@@ -10,7 +10,8 @@ endif
 
 NAME		= push_swap
 
-SRCS		= main.c
+SRCS		= src${DIRSEP}main.c src${DIRSEP}push_swap.c src${DIRSEP}moves.c \
+		src${DIRSEP}stack${DIRSEP}utils.c
 
 OBJ_PATH	= obj${DIRSEP}
 
@@ -20,7 +21,7 @@ OBJS		= ${addprefix ${OBJ_PATH}, ${OBJ_NAME}}
 
 CC			= gcc
 
-HEAD		= .
+HEAD		= include
 
 LIBFT_DIR	= libft
 

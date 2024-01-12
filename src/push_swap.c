@@ -12,10 +12,9 @@
 
 #include "push_swap.h"
 
-int     main(int argc, char **argv)
+void	ft_push_swap(t_stack *stack_a, t_stack *stack_b, int size)
 {
-        (void)argc;
-        (void)argv;
-        return (0);
+        (void)stack_a;
+        (void)stack_b;
+        (void)size;
 }
-        
