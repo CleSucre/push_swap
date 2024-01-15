@@ -17,28 +17,28 @@
 # include "../libft/include/colors.h"
 # include <unistd.h>
 
-typedef struct	s_stack
-{
-        int		value;
-        struct s_stack	*next;
-}				t_stack;
+// ============ MAIN ============
 
-void     ft_push_swap(t_stack *stack_a, t_stack *stack_b, int size);
+void    ft_free_tab(char **tab);
+void    ft_push_swap(t_list *stack_a, t_list *stack_b, int size);
 
-t_stack *ft_stacknew(int value);
-void    ft_stackadd(t_stack **stack, t_stack *new);
-void    ft_stackdel(t_stack **stack);;
+// ============ PARSING ============
 
-int     sa(t_stack *stack);
-int     sb(t_stack *stack);
-int     ss(t_stack *stack_a, t_stack *stack_b);
-int     pa(t_stack *stack_a, t_stack *stack_b);
-int     pb(t_stack *stack_a, t_stack *stack_b);
-int     ra(t_stack *stack);
-int     rb(t_stack *stack);
-int     rr(t_stack *stack_a, t_stack *stack_b);
-int     rra(t_stack *stack);
-int     rrb(t_stack *stack);
-int     rrr(t_stack *stack_a, t_stack *stack_b);
+char    *ft_pre_parsing(const char *input);
+char    **ft_parsing(const char **inputs);
+
+// ============ OPERATIONS ============
+
+int     sa(t_list *stack);
+int     sb(t_list *stack);
+int     ss(t_list *stack_a, t_list *stack_b);
+int     pa(t_list *stack_a, t_list *stack_b);
+int     pb(t_list *stack_a, t_list *stack_b);
+int     ra(t_list *stack);
+int     rb(t_list *stack);
+int     rr(t_list *stack_a, t_list *stack_b);
+int     rra(t_list *stack);
+int     rrb(t_list *stack);
+int     rrr(t_list *stack_a, t_list *stack_b);
 
 #endif

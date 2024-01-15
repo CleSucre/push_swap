@@ -11,7 +11,7 @@ endif
 NAME		= push_swap
 
 SRCS		= src${DIRSEP}main.c src${DIRSEP}push_swap.c src${DIRSEP}moves.c \
-		src${DIRSEP}stack${DIRSEP}utils.c
+		src${DIRSEP}parsing.c
 
 OBJ_PATH	= obj${DIRSEP}
 
@@ -25,7 +25,7 @@ HEAD		= include
 
 LIBFT_DIR	= libft
 
-CFLAGS		= -Wall -Wextra -Werror -g -I ${HEAD}
+CFLAGS		= -g -I ${HEAD}
 
 ${OBJ_PATH}%.o : %.c
 	mkdir -p ${@D} 2> ${DIRSEP}dev${DIRSEP}null || true
