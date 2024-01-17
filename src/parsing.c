@@ -1,98 +1,78 @@
 #include "push_swap.h"
 
-static char    *ft_pars_one(const char *str)
-{
-        int     i;
-        char    *pre_res;
-        char    *tmp;
-        char    **split_res;
-
-        if (ft_str_count_chars(str, WHITESPACES) != 0)
-        {
-                split_res = ft_split(str, ' ');
-                if (split_res == NULL)
-                        return (NULL);
-                i = 0;
-                while (split_res[i])
-                {
-
-                        tmp = ft_pars_one(split_res[i]);
-                        if (tmp == NULL)
-                        {
-                                ft_free_tab(split_res);
-                                return (NULL);
-                        }
-                        pre_res = ft_strjoin(pre_res, tmp);
-                        free(tmp);
-                        tmp = pre_res;
-                        pre_res = ft_strjoin(pre_res, " ");
-                        free(tmp);
-                        i++;
-                }
-                ft_free_tab(split_res);
-                return (pre_res);
-        }
-        return (ft_pre_parsing(str));
-}
-
-char     *ft_pre_parsing(const char *input)
+static t_stack *check_value(const char *str)
 {
         long int        res;
         int                        is_n;
 
-        while (ft_isspace(*input))
-                input++;
+        while (ft_isspace(*str))
+                str++;
         is_n = 0;
-        if (*input == '-' || *input == '+')
-                if (*input++ == '-')
+        if (*str == '-' || *str == '+')
+                if (*str++ == '-')
                         is_n = 1;
         res = 0;
-        while (ft_isdigit(*input))
-        {
-                res = res * 10 + (*input++ - '0');
-                if (res > INT_MAX || res < INT_MIN)
-                        return (NULL);
-        }
-        input--;
-        if (res == 0 && *input != '0')
+        while (ft_isdigit(*str))
+                res = res * 10 + (*str++ - '0');
+        if (*str != '\0')
+                return (NULL);
+        str--;
+        if (res == 0 && *str != '0')
                 return (NULL);
         if (is_n)
                 res *= -1;
-        return (ft_itoa(res));
+        if (res > INT_MAX || res < INT_MIN)
+                return (NULL);
+        return (stack_new(res));
 }
 
-char    **ft_parsing(const char **inputs)
+static t_stack *check_duplicates(t_stack *stack)
 {
-        char    *pre_res;
-        char    **res;
-        char    *tmp;
-        char    *tmp2;
-        int     i;
+        t_stack *tmp_stack;
+        t_stack *tmp_next;
 
-        pre_res = malloc(sizeof(char));
-        if (pre_res == NULL)
-                return (NULL);
-        pre_res[0] = '\0';
-        i = 1;
-        while (inputs[i])
+        tmp_stack = stack;
+        while (tmp_stack)
         {
-                tmp = ft_pars_one(inputs[i]);
-                if (tmp == NULL)
+                tmp_next = tmp_stack->next;
+                while (tmp_next)
                 {
-                        ft_printf("Error during parsing\nNumber \"%s\" is not valid\n", inputs[i]);
-                        exit(0);
+                        if (tmp_stack->value == tmp_next->value)
+                        {
+                                stack_clear(&stack);
+                                return (NULL);
+                        }
+                        tmp_next = tmp_next->next;
                 }
-                else
-                {
-                        tmp2 = ft_strjoin(pre_res, tmp);
-                        free(pre_res);
-                        pre_res = ft_strjoin(tmp2, " ");
-                        free(tmp2);
-                }
-                free(tmp);
-                i++;
+                tmp_stack = tmp_stack->next;
         }
-        res = ft_split(pre_res, ' ');
-        free(pre_res);
-        return (res);
+        return (stack);
+}
+
+t_stack *ft_parsing(const char **argv, t_stack *stack)
+{
+        t_stack *new_stack;
+        char    **values;
+        int             i;
+
+        while (*argv)
+        {
+                values = ft_split(*argv++, WHITESPACES);
+                if (values == NULL)
+                        return (NULL);
+                i = -1;
+                while (values[++i])
+                {
+                        new_stack = check_value(values[i]);
+                        if (new_stack == NULL)
+                        {
+                                ft_free_tab(values);
+                                stack_clear(&stack);
+                                return (NULL);
+                        }
+                        stack_add_back(&stack, new_stack);
+                }
+                ft_free_tab(values);
+        }
+        return (check_duplicates(stack));
 }

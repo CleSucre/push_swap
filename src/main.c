@@ -14,7 +14,7 @@
 
 void    ft_free_tab(char **tab)
 {
-        int     i;
+        int i;
 
         i = 0;
         while (tab[i])
@@ -24,26 +24,20 @@ void    ft_free_tab(char **tab)
 
 int     main(int argc, char **argv)
 {
-        char    *tmp;
-        char    *input;
-        char    **output;
-        int     i;
-        t_list *stack_a;
-        t_list *stack_b;
+        t_stack *stack_a;
+        t_stack *stack_b;
 
         if (argc == 1)
-                return (0);
-        output = ft_parsing((const char **)argv);
-
-        i = 0;
-        while (output[i])
+                return (1);
+        stack_a = ft_parsing((const char **)argv + 1, NULL);
+        if (stack_a == NULL)
         {
-                ft_printf("output[%d] = %s\n", i, output[i]);
-                i++;
+                ft_printf("Error\n");
+                return (2);
         }
-
-        // ft_push_swap(stack_a, stack_b, argc - 1);
-
-        ft_free_tab(output);
+        stack_b = NULL;
+        ft_push_swap(stack_a, stack_b);
+        stack_clear(&stack_a);
+        stack_clear(&stack_b);
         return (0);
 }

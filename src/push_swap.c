@@ -12,13 +12,18 @@
 
 #include "push_swap.h"
 
-void	ft_push_swap(t_list *stack_a, t_list *stack_b, int size)
+void	ft_push_swap(t_stack *stack_a, t_stack *stack_b)
 {
-        (void)stack_a;
-        (void)stack_b;
-        (void)size;
+        int i;
 
-        //debug all stacks
-        ft_printf("stack_a: \n");
-        ft_lstprint(stack_a);
+        (void)stack_b;
+
+        //TODO: remove
+        i = 0;
+        while (stack_a)
+        {
+                ft_printf("stack_a[%d] = %d\n", i, stack_a->value);
+                stack_a = stack_a->next;
+                i++;
+        }
 }

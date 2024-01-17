@@ -17,28 +17,40 @@
 # include "../libft/include/colors.h"
 # include <unistd.h>
 
+// ============ STACK ============
+
+typedef struct      s_stack
+{
+        int                     value;
+        struct s_stack  *next;
+}                                       t_stack;
+
 // ============ MAIN ============
 
 void    ft_free_tab(char **tab);
-void    ft_push_swap(t_list *stack_a, t_list *stack_b, int size);
+void    ft_push_swap(t_stack *stack_a, t_stack *stack_b);
 
 // ============ PARSING ============
 
-char    *ft_pre_parsing(const char *input);
-char    **ft_parsing(const char **inputs);
+t_stack *ft_parsing(const char **argv, t_stack *stack);
 
 // ============ OPERATIONS ============
 
-int     sa(t_list *stack);
-int     sb(t_list *stack);
-int     ss(t_list *stack_a, t_list *stack_b);
-int     pa(t_list *stack_a, t_list *stack_b);
-int     pb(t_list *stack_a, t_list *stack_b);
-int     ra(t_list *stack);
-int     rb(t_list *stack);
-int     rr(t_list *stack_a, t_list *stack_b);
-int     rra(t_list *stack);
-int     rrb(t_list *stack);
-int     rrr(t_list *stack_a, t_list *stack_b);
+void    stack_clear(t_stack **stack);
+t_stack *stack_new(int value);
+t_stack *stack_last(t_stack *stack);
+void    stack_add_back(t_stack **stack, t_stack *new);
+
+int     sa(t_stack *stack);
+int     sb(t_stack *stack);
+int     ss(t_stack *stack_a, t_stack *stack_b);
+int     pa(t_stack *stack_a, t_stack *stack_b);
+int     pb(t_stack *stack_a, t_stack *stack_b);
+int     ra(t_stack *stack);
+int     rb(t_stack *stack);
+int     rr(t_stack *stack_a, t_stack *stack_b);
+int     rra(t_stack *stack);
+int     rrb(t_stack *stack);
+int     rrr(t_stack *stack_a, t_stack *stack_b);
 
 #endif

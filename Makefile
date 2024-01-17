@@ -25,7 +25,7 @@ HEAD		= include
 
 LIBFT_DIR	= libft
 
-CFLAGS		= -g -I ${HEAD}
+CFLAGS		= -Wall -Wextra -Werror -g -I ${HEAD}
 
 ${OBJ_PATH}%.o : %.c
 	mkdir -p ${@D} 2> ${DIRSEP}dev${DIRSEP}null || true
@@ -36,6 +36,8 @@ ${NAME}: ${OBJS}
 	${CC} ${CFLAGS} -o ${NAME} ${OBJS} -L ${LIBFT_DIR} -lft
 
 all: ${NAME}
+	make -C ${LIBFT_DIR} all
+	${CC} ${CFLAGS} -o ${NAME} ${OBJS} -L ${LIBFT_DIR} -lft
 
 clean:
 	make -C ${LIBFT_DIR} clean
