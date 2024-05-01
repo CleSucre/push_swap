@@ -12,21 +12,21 @@
 
 #include "push_swap.h"
 
-void    stack_clear(t_stack **stack)
+void	stack_clear(t_stack **stack)
 {
 	t_stack	*t;
 
 	while (*stack)
 	{
 		t = (*stack)->next;
-                free(*stack);
+		free(*stack);
 		(*stack) = t;
 	}
 }
 
 t_stack	*stack_new(int value)
 {
-	t_stack *new;
+	t_stack	*new;
 
 	new = (t_stack *)malloc(sizeof(t_stack));
 	if (!new)
@@ -36,16 +36,16 @@ t_stack	*stack_new(int value)
 	return (new);
 }
 
-t_stack *stack_last(t_stack *stack)
+t_stack	*stack_last(t_stack *stack)
 {
-        t_stack	*t;
+	t_stack	*t;
 
-        if (!stack)
-                return (NULL);
-        t = stack;
-        while (t->next)
-                t = t->next;
-        return (t);
+	if (!stack)
+		return (NULL);
+	t = stack;
+	while (t->next)
+		t = t->next;
+	return (t);
 }
 
 void	stack_add_back(t_stack **stack, t_stack *new)
@@ -63,84 +63,84 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 		*stack = new;
 }
 
-int     swap(t_stack *stack)
+int	swap(t_stack *stack)
 {
-        t_stack *tmp;
+	t_stack	*tmp;
 
-        if (stack == NULL || stack->next == NULL)
-                return (1);
-        tmp = stack->next;
-        stack->next = tmp->next;
-        tmp->next = stack;
-        stack = tmp;
-        return (0);
+	if (stack == NULL || stack->next == NULL)
+		return (1);
+	tmp = stack->next;
+	stack->next = tmp->next;
+	tmp->next = stack;
+	stack = tmp;
+	return (0);
 }
 
 /**
  * Shift up all elements of stack a by 1.
  * The first element becomes the last one.
 */
-int     ra(t_stack *stack)
+int	ra(t_stack *stack)
 {
-        (void)stack;
-        return (0);
+	(void)stack;
+	return (0);
 }
 
-int     sb(t_stack *stack)
+int	sb(t_stack *stack)
 {
-        (void)stack;
-        return (0);
+	(void)stack;
+	return (0);
 }
 
-int     ss(t_stack *stack_a, t_stack *stack_b)
+int	ss(t_stack *stack_a, t_stack *stack_b)
 {
-        (void)stack_a;
-        (void)stack_b;
-        return (0);
+	(void)stack_a;
+	(void)stack_b;
+	return (0);
 }
 
-int     pa(t_stack *stack_a, t_stack *stack_b)
+int	pa(t_stack *stack_a, t_stack *stack_b)
 {
-        (void)stack_a;
-        (void)stack_b;
-        return (0);
+	(void)stack_a;
+	(void)stack_b;
+	return (0);
 }
 
-int     pb(t_stack *stack_a, t_stack *stack_b)
+int	pb(t_stack *stack_a, t_stack *stack_b)
 {
-        (void)stack_a;
-        (void)stack_b;
-        return (0);
+	(void)stack_a;
+	(void)stack_b;
+	return (0);
 }
 
-int     rb(t_stack *stack)
+int	rb(t_stack *stack)
 {
-        (void)stack;
-        return (0);
+	(void)stack;
+	return (0);
 }
 
-int     rr(t_stack *stack_a, t_stack *stack_b)
+int	rr(t_stack *stack_a, t_stack *stack_b)
 {
-        (void)stack_a;
-        (void)stack_b;
-        return (0);
+	(void)stack_a;
+	(void)stack_b;
+	return (0);
 }
 
-int     rra(t_stack *stack)
+int	rra(t_stack *stack)
 {
-        (void)stack;
-        return (0);
+	(void)stack;
+	return (0);
 }
 
-int     rrb(t_stack *stack)
+int	rrb(t_stack *stack)
 {
-        (void)stack;
-        return (0);
+	(void)stack;
+	return (0);
 }
 
-int     rrr(t_stack *stack_a, t_stack *stack_b)
+int	rrr(t_stack *stack_a, t_stack *stack_b)
 {
-        (void)stack_a;
-        (void)stack_b;
-        return (0);
+	(void)stack_a;
+	(void)stack_b;
+	return (0);
 }

@@ -12,32 +12,32 @@
 
 #include "push_swap.h"
 
-void    ft_free_tab(char **tab)
+void	ft_free_tab(char **tab)
 {
-        int i;
+	int	i;
 
-        i = 0;
-        while (tab[i])
-                free(tab[i++]);
-        free(tab);
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
 }
 
-int     main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-        t_stack *stack_a;
-        t_stack *stack_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
-        if (argc == 1)
-                return (1);
-        stack_a = ft_parsing((const char **)argv + 1, NULL);
-        if (stack_a == NULL)
-        {
-                ft_printf("Error\n");
-                return (2);
-        }
-        stack_b = NULL;
-        ft_push_swap(stack_a, stack_b);
-        stack_clear(&stack_a);
-        stack_clear(&stack_b);
-        return (0);
+	if (argc == 1)
+		return (1);
+	stack_a = ft_parsing((const char **)argv + 1, NULL);
+	if (stack_a == NULL)
+	{
+		ft_printf("Error\n");
+		return (2);
+	}
+	stack_b = NULL;
+	ft_push_swap(stack_a, stack_b);
+	stack_clear(&stack_a);
+	stack_clear(&stack_b);
+	return (0);
 }
