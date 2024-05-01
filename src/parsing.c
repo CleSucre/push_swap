@@ -78,7 +78,7 @@ t_stack	*ft_parsing(const char **argv, t_stack *stack)
 			new_stack = check_value(values[i]);
 			if (new_stack == NULL)
 			{
-				ft_free_tab(values);
+				ft_freetab(values);
 				stack_clear(&stack);
 				return (NULL);
 			}
