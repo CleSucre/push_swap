@@ -84,7 +84,7 @@ t_stack	*ft_parsing(const char **argv, t_stack *stack)
 			}
 			stack_add_back(&stack, new_stack);
 		}
-		ft_free_tab(values);
+		ft_freetab(values);
 	}
 	return (check_duplicates(stack));
 }

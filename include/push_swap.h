@@ -27,7 +27,6 @@ typedef struct s_stack
 
 // ============ MAIN ============
 
-void	ft_free_tab(char **tab);
 void	ft_push_swap(t_stack *stack_a, t_stack *stack_b);
 
 // ============ PARSING ============

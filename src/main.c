@@ -12,16 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		free(tab[i++]);
-	free(tab);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
