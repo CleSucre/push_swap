@@ -27,7 +27,7 @@ typedef struct s_stack
 
 // ============ MAIN ============
 
-void	ft_push_swap(t_stack *stack_a, t_stack *stack_b);
+void	ft_push_swap(t_stack **stack_a, t_stack **stack_b);
 
 // ============ PARSING ============
 
@@ -40,16 +40,24 @@ t_stack	*stack_new(int value);
 t_stack	*stack_last(t_stack *stack);
 void	stack_add_back(t_stack **stack, t_stack *new);
 
-int		sa(t_stack *stack);
-int		sb(t_stack *stack);
-int		ss(t_stack *stack_a, t_stack *stack_b);
-int		pa(t_stack *stack_a, t_stack *stack_b);
-int		pb(t_stack *stack_a, t_stack *stack_b);
-int		ra(t_stack *stack);
-int		rb(t_stack *stack);
-int		rr(t_stack *stack_a, t_stack *stack_b);
-int		rra(t_stack *stack);
-int		rrb(t_stack *stack);
-int		rrr(t_stack *stack_a, t_stack *stack_b);
+// ============ SHIFT ============
+
+void	ra(t_stack **stack);
+void	rra(t_stack **stack);
+void	rrb(t_stack **stack);
+void	rb(t_stack **stack);
+void	rr(t_stack **stack_a, t_stack **stack_b);
+void	rrr(t_stack **stack_a, t_stack **stack_b);
+
+// ============ SWAP ============
+
+void	sa(t_stack **stack);
+void	sb(t_stack **stack);
+void	ss(t_stack **stack_a, t_stack **stack_b);
+
+// ============ PUSH ============
+
+void	pa(t_stack **stack_a, t_stack **stack_b);
+void	pb(t_stack **stack_a, t_stack **stack_b);
 
 #endif

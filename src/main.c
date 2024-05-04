@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		return (2);
 	}
 	stack_b = NULL;
-	ft_push_swap(stack_a, stack_b);
+	ft_push_swap(&stack_a, &stack_b);
 	stack_clear(&stack_a);
 	stack_clear(&stack_b);
 	return (0);

@@ -12,6 +12,11 @@
 
 #include "push_swap.h"
 
+/**
+ * @brief Clear the stack.
+ *
+ * @param t_stack** stack
+ */
 void	stack_clear(t_stack **stack)
 {
 	t_stack	*t;
@@ -24,6 +29,12 @@ void	stack_clear(t_stack **stack)
 	}
 }
 
+/**
+ * @brief Create a new stack element.
+ *
+ * @param int value
+ * @return t_stack*
+ */
 t_stack	*stack_new(int value)
 {
 	t_stack	*new;
@@ -36,6 +47,12 @@ t_stack	*stack_new(int value)
 	return (new);
 }
 
+/**
+ * @brief Get the last element of the stack.
+ *
+ * @param t_stack* stack
+ * @return t_stack*
+ */
 t_stack	*stack_last(t_stack *stack)
 {
 	t_stack	*t;
@@ -48,6 +65,12 @@ t_stack	*stack_last(t_stack *stack)
 	return (t);
 }
 
+/**
+ * @brief Add a new element at the beginning of the stack.
+ *
+ * @param t_stack** stack
+ * @param t_stack* new
+ */
 void	stack_add_back(t_stack **stack, t_stack *new)
 {
 	t_stack	*t;
@@ -61,86 +84,4 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 	}
 	else
 		*stack = new;
-}
-
-int	swap(t_stack *stack)
-{
-	t_stack	*tmp;
-
-	if (stack == NULL || stack->next == NULL)
-		return (1);
-	tmp = stack->next;
-	stack->next = tmp->next;
-	tmp->next = stack;
-	stack = tmp;
-	return (0);
-}
-
-/**
- * Shift up all elements of stack a by 1.
- * The first element becomes the last one.
-*/
-int	ra(t_stack *stack)
-{
-	(void)stack;
-	return (0);
-}
-
-int	sb(t_stack *stack)
-{
-	(void)stack;
-	return (0);
-}
-
-int	ss(t_stack *stack_a, t_stack *stack_b)
-{
-	(void)stack_a;
-	(void)stack_b;
-	return (0);
-}
-
-int	pa(t_stack *stack_a, t_stack *stack_b)
-{
-	(void)stack_a;
-	(void)stack_b;
-	return (0);
-}
-
-int	pb(t_stack *stack_a, t_stack *stack_b)
-{
-	(void)stack_a;
-	(void)stack_b;
-	return (0);
-}
-
-int	rb(t_stack *stack)
-{
-	(void)stack;
-	return (0);
-}
-
-int	rr(t_stack *stack_a, t_stack *stack_b)
-{
-	(void)stack_a;
-	(void)stack_b;
-	return (0);
-}
-
-int	rra(t_stack *stack)
-{
-	(void)stack;
-	return (0);
-}
-
-int	rrb(t_stack *stack)
-{
-	(void)stack;
-	return (0);
-}
-
-int	rrr(t_stack *stack_a, t_stack *stack_b)
-{
-	(void)stack_a;
-	(void)stack_b;
-	return (0);
 }

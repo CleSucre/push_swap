@@ -12,17 +12,32 @@
 
 #include "push_swap.h"
 
-void	ft_push_swap(t_stack *stack_a, t_stack *stack_b)
+/**
+ * @brief Print the stack. For debugging purposes.
+ * @param stack
+ */
+static void	ft_print_stack(t_stack *stack)
 {
 	int	i;
 
-	(void)stack_b;
-	//TODO: remove
 	i = 0;
-	while (stack_a)
+	while (stack)
 	{
-		ft_printf("stack_a[%d] = %d\n", i, stack_a->value);
-		stack_a = stack_a->next;
+		ft_printf("stack[%d] = %d\n", i, stack->value);
+		stack = stack->next;
 		i++;
 	}
+}
+
+/**
+ * @brief Sort the stack_a using the stack_b.
+ * Use the following algorithm: IDK
+ *
+ * @param stack_a
+ * @param stack_b
+ */
+void	ft_push_swap(t_stack **stack_a, t_stack **stack_b)
+{
+	(void)stack_b;
+	ft_print_stack(*stack_a);
 }
