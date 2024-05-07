@@ -21,12 +21,13 @@
  */
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-    int value;
-    if (!*stack_b)
-        return;
-    value = pop(stack_b);
-    push(stack_a, value);
-    ft_printf("pa\n");
+	int	value;
+
+	if (!*stack_b)
+		return ;
+	value = pop(stack_b);
+	push(stack_a, value);
+	ft_printf("pa\n");
 }
 
 /**
@@ -38,22 +39,11 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
  */
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-    int value;
-    if (!*stack_a)
-        return;
-    value = pop(stack_a);
-    push(stack_b, value);
-    ft_printf("pb\n");
-}
+	int	value;
 
-void	push_loop(t_stack **stack_src, t_stack **stack_dst, int size, void (*f)(t_stack**, t_stack**))
-{
-    int i;
-
-    i = 0;
-    while (*stack_dst && i < size)
-    {
-        f(stack_dst, stack_src);
-        i++;
-    }
+	if (!*stack_a)
+		return ;
+	value = pop(stack_a);
+	push(stack_b, value);
+	ft_printf("pb\n");
 }

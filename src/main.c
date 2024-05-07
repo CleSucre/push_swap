@@ -32,7 +32,7 @@ static void	ft_print_stack(t_stack *stack, char name)
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
-    t_stack *stack_b;
+	t_stack	*stack_b;
 
 	if (argc == 1)
 		return (1);
@@ -42,10 +42,10 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (2);
 	}
-    stack_b = NULL;
-    ft_print_stack(stack_a, 'a');
-    push_swap(&stack_a, &stack_b);
-    ft_print_stack(stack_a, 'a');
+	stack_b = NULL;
+	ft_print_stack(stack_a, 'a');
+	push_swap(&stack_a, &stack_b);
+	ft_print_stack(stack_a, 'a');
 	stack_clear(&stack_a);
 	return (0);
 }

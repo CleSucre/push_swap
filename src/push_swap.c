@@ -12,85 +12,45 @@
 
 #include "push_swap.h"
 
-static int	is_sorted(t_stack *stack)
+/**
+ * @brief Get the size of the stack.
+ *
+ * @param t_stack* stack
+ * @return int
+ */
+int	stack_size(t_stack *stack)
 {
-	while (stack && stack->next)
+	int	i;
+
+	i = 0;
+	while (stack)
 	{
-		if (stack->value > stack->next->value)
-			return (0);
 		stack = stack->next;
+		i++;
 	}
-	return (1);
+	return (i);
 }
 
 /**
- * @brief Sort the stack using the insertion sort algorithm.
+ * @brief Get the maximum value of the stack.
  *
- * @param t_stack** stack_a
- * @param t_stack** stack_b
+ * @param t_stack* stack
+ * @return int
  */
-void	insertion_sort(t_stack **stack_a, t_stack **stack_b)
+int	stack_max(t_stack *stack)
 {
-	while (*stack_a)
-		pb(stack_a, stack_b);
-	while (*stack_b)
+	int	max;
+
+	if (!stack)
+		return (-1);
+	max = stack->value;
+	while (stack)
 	{
-		pa(stack_a, stack_b);
-		if (*stack_a && (*stack_a)->next && (*stack_a)->value > (*stack_a)->next->value)
-			sa(stack_a);
+		if (stack->value > max)
+			max = stack->value;
+		stack = stack->next;
 	}
-	if (is_sorted(*stack_a))
-		return ;
-	insertion_sort(stack_a, stack_b);
-}
-
-/*
-void merge_combine(t_stack **stack_a, t_stack **stack_b)
-{
-    int size_a;
-    int size_b;
-    int i;
-    int j;
-
-    size_a = stack_size(*stack_a);
-    size_b = stack_size(*stack_b);
-    i = 0;
-    j = 0;
-    while (i < size_a && j < size_b)
-    {
-        if ((*stack_a)->value < (*stack_b)->value)
-        {
-            pa(stack_a, stack_b);
-            i++;
-        }
-        else
-        {
-            pb(stack_a, stack_b);
-            j++;
-        }
-    }
-    while (i < size_a)
-    {
-        pa(stack_a, stack_b);
-        i++;
-    }
-}
- */
-
-int stack_max(t_stack *stack)
-{
-    int max;
-
-    if (!stack)
-        return (-1);
-    max = stack->value;
-    while (stack)
-    {
-        if (stack->value > max)
-            max = stack->value;
-        stack = stack->next;
-    }
-    return max;
+	return (max);
 }
 
 /**
@@ -99,37 +59,45 @@ int stack_max(t_stack *stack)
  * @param t_stack** stack_a
  * @param t_stack** stack_b
  */
-void radix_sort(t_stack **a, t_stack **b) {
-    int max_num = stack_max(*a);
-    int max_bits = 0;
-    while ((max_num >> max_bits) != 0) {
-        max_bits++;
-    }
+void	radix_sort(t_stack **a, t_stack **b)
+{
+	int	max_num;
+	int	max_bits;
+	int	i;
+	int	j;
+	int	size;
 
-    for (int i = 0; i < max_bits; i++) {
-        int size = 0;
-        t_stack *temp = *a;
-        while (temp) {
-            temp = temp->next;
-            size++;
-        }
-        for (int j = 0; j < size; j++) {
-            int num = (*a)->value;
-            if ((num >> i) & 1)
-                ra(a);
-            else
-                push(b, pop(a));
-            temp = *a;
-        }
-        while (*b != NULL) {
-            push(a, pop(b));
-        }
-    }
+	max_num = stack_max(*a);
+	max_bits = 0;
+	while ((max_num >> max_bits) != 0)
+		max_bits++;
+	i = -1;
+	while (++i < max_bits)
+	{
+		size = stack_size(*a);
+		j = 0;
+		while (++j < size)
+		{
+			if (((*a)->value >> i) & 1)
+				ra(a);
+			else
+				pb(a, b);
+		}
+		while (*b != NULL)
+			pa(a, b);
+	}
 }
 
 void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
-    if (is_sorted(*stack_a))
-        return ;
-    radix_sort(stack_a, stack_b);
+	t_stack	*tmp;
+
+	tmp = *stack_a;
+	while (tmp && tmp->next)
+	{
+		if (tmp->value > tmp->next->value)
+			break ;
+		tmp = tmp->next;
+	}
+	radix_sort(stack_a, stack_b);
 }

@@ -6,7 +6,7 @@
 /*   By: julthoma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 08:07:14 by julthoma          #+#    #+#             */
-/*   Updated: 2024/05/04 08:07:14 by julthoma         ###   ########.fr       */
+/*   Updated: 2024/05/08 00:52:17 by julthoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@
 */
 void	ra(t_stack **stack_a)
 {
-    t_stack *first;
+	t_stack	*first;
 	t_stack	*last;
 
 	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
-    first = *stack_a;
-    last = *stack_a;
-    while (last->next)
-        last = last->next;
-    *stack_a = first->next;
-    first->next = NULL;
-    last->next = first;
-    ft_printf("ra\n");
+	first = *stack_a;
+	last = *stack_a;
+	while (last->next)
+		last = last->next;
+	*stack_a = first->next;
+	first->next = NULL;
+	last->next = first;
+	ft_printf("ra\n");
 }
 
 /**
@@ -53,7 +53,7 @@ void	rra(t_stack **stack)
 	*stack = (*stack)->next;
 	last->next = tmp;
 	tmp->next = NULL;
-    ft_printf("rra\n");
+	ft_printf("rra\n");
 }
 
 /**
@@ -64,8 +64,8 @@ void	rra(t_stack **stack)
  */
 void	rrb(t_stack **stack)
 {
-    rra(stack);
-    ft_printf("rrb\n");
+	rra(stack);
+	ft_printf("rrb\n");
 }
 
 /**
@@ -77,7 +77,7 @@ void	rrb(t_stack **stack)
 void	rb(t_stack **stack)
 {
 	ra(stack);
-    ft_printf("rb\n");
+	ft_printf("rb\n");
 }
 
 /**
