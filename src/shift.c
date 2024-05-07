@@ -18,18 +18,21 @@
  *
  * @param t_stack** stack
 */
-void	ra(t_stack **stack)
+void	ra(t_stack **stack_a)
 {
-	t_stack	*tmp;
+    t_stack *first;
 	t_stack	*last;
 
-	if (!stack || !*stack || !(*stack)->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
-	tmp = *stack;
-	*stack = (*stack)->next;
-	last = stack_last(*stack);
-	last->next = tmp;
-	tmp->next = NULL;
+    first = *stack_a;
+    last = *stack_a;
+    while (last->next)
+        last = last->next;
+    *stack_a = first->next;
+    first->next = NULL;
+    last->next = first;
+    ft_printf("ra\n");
 }
 
 /**
@@ -50,6 +53,7 @@ void	rra(t_stack **stack)
 	*stack = (*stack)->next;
 	last->next = tmp;
 	tmp->next = NULL;
+    ft_printf("rra\n");
 }
 
 /**
@@ -60,7 +64,8 @@ void	rra(t_stack **stack)
  */
 void	rrb(t_stack **stack)
 {
-	rra(stack);
+    rra(stack);
+    ft_printf("rrb\n");
 }
 
 /**
@@ -72,6 +77,7 @@ void	rrb(t_stack **stack)
 void	rb(t_stack **stack)
 {
 	ra(stack);
+    ft_printf("rb\n");
 }
 
 /**
@@ -92,10 +98,8 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
  * @param t_stack** stack_a
  * @param t_stack** stack_b
  */
-/*
 void	rrr(t_stack **stack_a, t_stack **stack_b)
 {
 	rra(stack_a);
 	rrb(stack_b);
 }
-*/

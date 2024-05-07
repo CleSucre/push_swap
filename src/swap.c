@@ -28,6 +28,7 @@ void	sa(t_stack **stack)
 	(*stack)->next = tmp->next;
 	tmp->next = *stack;
 	*stack = tmp;
+    ft_printf("sa\n");
 }
 
 /**
@@ -38,7 +39,15 @@ void	sa(t_stack **stack)
  */
 void	sb(t_stack **stack)
 {
-	sa(stack);
+    t_stack	*tmp;
+
+    if (!stack || !*stack || !(*stack)->next)
+        return ;
+    tmp = (*stack)->next;
+    (*stack)->next = tmp->next;
+    tmp->next = *stack;
+    *stack = tmp;
+    ft_printf("sb\n");
 }
 
 /**
@@ -49,6 +58,6 @@ void	sb(t_stack **stack)
  */
 void	ss(t_stack **stack_a, t_stack **stack_b)
 {
-	sa(stack_a);
-	sb(stack_b);
+    sa(stack_a);
+    sb(stack_b);
 }

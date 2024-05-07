@@ -21,14 +21,12 @@
  */
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*tmp;
-
-	if (!stack_b || !*stack_b)
-		return ;
-	tmp = *stack_b;
-	*stack_b = (*stack_b)->next;
-	tmp->next = *stack_a;
-	*stack_a = tmp;
+    int value;
+    if (!*stack_b)
+        return;
+    value = pop(stack_b);
+    push(stack_a, value);
+    ft_printf("pa\n");
 }
 
 /**
@@ -40,17 +38,22 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
  */
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	pa(stack_b, stack_a);
+    int value;
+    if (!*stack_a)
+        return;
+    value = pop(stack_a);
+    push(stack_b, value);
+    ft_printf("pb\n");
 }
 
-/**
- * @brief rra and rrb at the same time.
- *
- * @param t_stack** stack_a
- * @param t_stack** stack_b
- */
-void	rrr(t_stack **stack_a, t_stack **stack_b)
+void	push_loop(t_stack **stack_src, t_stack **stack_dst, int size, void (*f)(t_stack**, t_stack**))
 {
-	rra(stack_a);
-	rrb(stack_b);
+    int i;
+
+    i = 0;
+    while (*stack_dst && i < size)
+    {
+        f(stack_dst, stack_src);
+        i++;
+    }
 }

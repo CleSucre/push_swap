@@ -12,10 +12,27 @@
 
 #include "push_swap.h"
 
+/**
+ * @brief Print the stack. For debugging purposes.
+ * @param stack
+ */
+static void	ft_print_stack(t_stack *stack, char name)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		ft_printf("stack_%c[%d] = %d\n", name, i, stack->value);
+		stack = stack->next;
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
-	t_stack	*stack_b;
+    t_stack *stack_b;
 
 	if (argc == 1)
 		return (1);
@@ -25,9 +42,10 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (2);
 	}
-	stack_b = NULL;
-	ft_push_swap(&stack_a, &stack_b);
+    stack_b = NULL;
+    ft_print_stack(stack_a, 'a');
+    push_swap(&stack_a, &stack_b);
+    ft_print_stack(stack_a, 'a');
 	stack_clear(&stack_a);
-	stack_clear(&stack_b);
 	return (0);
 }

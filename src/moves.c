@@ -85,3 +85,54 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 	else
 		*stack = new;
 }
+
+/**
+ * @brief Get the size of the stack.
+ *
+ * @param t_stack* stack
+ * @return int
+ */
+int	stack_size(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}
+
+/**
+ * @brief Pop the top element of the stack.
+ *
+ * @param t_stack** stack
+ * @return int
+ */
+int pop(t_stack **top) {
+    if (*top == NULL) return -1;
+    t_stack *temp = *top;
+    int value = temp->value;
+    *top = (*top)->next;
+    free(temp);
+    return value;
+}
+
+/**
+ * @brief Push a new element on top of the stack.
+ *
+ * @param t_stack **stack
+ * @param int value
+ */
+void push(t_stack **stack, int value)
+{
+    t_stack *new;
+
+    new = stack_new(value);
+    if (!new)
+        return ;
+    new->next = *stack;
+    *stack = new;
+}

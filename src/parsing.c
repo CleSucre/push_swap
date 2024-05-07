@@ -23,6 +23,10 @@ static t_stack	*check_value(const char *str)
 	if (*str == '-' || *str == '+')
 		if (*str++ == '-')
 			is_n = 1;
+    while (*str == '0')
+        str++;
+    if (ft_strlen(str) > 11)
+        return (NULL);
 	res = 0;
 	while (ft_isdigit(*str))
 		res = res * 10 + (*str++ - '0');
@@ -33,8 +37,6 @@ static t_stack	*check_value(const char *str)
 		return (NULL);
 	if (is_n)
 		res *= -1;
-	if (res > INT_MAX || res < INT_MIN)
-		return (NULL);
 	return (stack_new(res));
 }
 
