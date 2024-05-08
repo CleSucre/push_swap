@@ -16,7 +16,7 @@
  * @brief Print the stack. For debugging purposes.
  * @param stack
  */
-static void	ft_print_stack(t_stack *stack, char name)
+static void	ft_print_stack(t_stack *stack, const char name)
 {
 	int	i;
 
@@ -27,6 +27,17 @@ static void	ft_print_stack(t_stack *stack, char name)
 		stack = stack->next;
 		i++;
 	}
+}
+
+int	is_sorted(t_stack *stack)
+{
+	while (stack && stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -43,7 +54,6 @@ int	main(int argc, char **argv)
 		return (2);
 	}
 	stack_b = NULL;
-	ft_print_stack(stack_a, 'a');
 	push_swap(&stack_a, &stack_b);
 	ft_print_stack(stack_a, 'a');
 	stack_clear(&stack_a);

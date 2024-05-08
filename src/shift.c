@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: julthoma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 08:07:14 by julthoma          #+#    #+#             */
-/*   Updated: 2024/05/08 00:52:17 by julthoma         ###   ########.fr       */
+/*   Created: 2024/05/08 02:17:47 by julthoma          #+#    #+#             */
+/*   Updated: 2024/05/08 02:17:47 by julthoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	rra(t_stack **stack)
 void	rrb(t_stack **stack)
 {
 	rra(stack);
-	ft_printf("rrb\n");
 }
 
 /**
@@ -76,7 +75,18 @@ void	rrb(t_stack **stack)
  */
 void	rb(t_stack **stack)
 {
-	ra(stack);
+	t_stack	*first;
+	t_stack	*last;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	first = *stack;
+	last = *stack;
+	while (last->next)
+		last = last->next;
+	*stack = first->next;
+	first->next = NULL;
+	last->next = first;
 	ft_printf("rb\n");
 }
 
@@ -92,14 +102,10 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
 	rb(stack_b);
 }
 
-/**
- * @brief rra and rrb at the same time.
- *
- * @param t_stack** stack_a
- * @param t_stack** stack_b
- */
+/*
 void	rrr(t_stack **stack_a, t_stack **stack_b)
 {
 	rra(stack_a);
 	rrb(stack_b);
 }
+*/

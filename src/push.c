@@ -21,12 +21,14 @@
  */
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	int	value;
+	t_stack	*tmp;
 
 	if (!*stack_b)
 		return ;
-	value = pop(stack_b);
-	push(stack_a, value);
+	tmp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	tmp->next = *stack_a;
+	*stack_a = tmp;
 	ft_printf("pa\n");
 }
 
@@ -39,11 +41,13 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
  */
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	int	value;
+	t_stack	*tmp;
 
 	if (!*stack_a)
 		return ;
-	value = pop(stack_a);
-	push(stack_b, value);
+	tmp = *stack_a;
+	*stack_a = (*stack_a)->next;
+	tmp->next = *stack_b;
+	*stack_b = tmp;
 	ft_printf("pb\n");
 }

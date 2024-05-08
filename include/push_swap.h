@@ -27,7 +27,10 @@ typedef struct s_stack
 
 // ============ MAIN ============
 
-void	insertion_sort(t_stack **stack_a, t_stack **stack_b);
+int		is_sorted(t_stack *stack);
+
+// ============ PUSH_SWAP ============
+
 void	push_swap(t_stack **stack_a, t_stack **stack_b);
 
 // ============ PARSING ============
@@ -40,9 +43,7 @@ void	stack_clear(t_stack **stack);
 t_stack	*stack_new(int value);
 t_stack	*stack_last(t_stack *stack);
 void	stack_add_back(t_stack **stack, t_stack *new);
-int		stack_size(t_stack *stack);
-int		pop(t_stack **stack);
-void	push(t_stack **stack, int value);
+int		stack_max(t_stack *stack);
 
 // ============ SHIFT ============
 
@@ -63,6 +64,5 @@ void	ss(t_stack **stack_a, t_stack **stack_b);
 
 void	pa(t_stack **stack_a, t_stack **stack_b);
 void	pb(t_stack **stack_a, t_stack **stack_b);
-void	push_loop(t_stack **stack_src, t_stack **stack_dst, int size, void (*f)(t_stack**, t_stack**));
 
 #endif

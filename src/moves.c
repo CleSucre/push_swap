@@ -87,38 +87,23 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 }
 
 /**
- * @brief Pop the top element of the stack.
+ * @brief Get the maximum value of the stack.
  *
- * @param t_stack** stack
+ * @param t_stack* stack
  * @return int
  */
-int	pop(t_stack **top)
+int	stack_max(t_stack *stack)
 {
-	t_stack	*temp;
-	int		value;
+	int	max;
 
-	if (*top == NULL)
+	if (!stack)
 		return (-1);
-	temp = *top;
-	value = temp->value;
-	*top = (*top)->next;
-	free(temp);
-	return (value);
-}
-
-/**
- * @brief Push a new element on top of the stack.
- *
- * @param t_stack **stack
- * @param int value
- */
-void	push(t_stack **stack, int value)
-{
-	t_stack	*new;
-
-	new = stack_new(value);
-	if (!new)
-		return ;
-	new->next = *stack;
-	*stack = new;
+	max = stack->value;
+	while (stack)
+	{
+		if (stack->value > max)
+			max = stack->value;
+		stack = stack->next;
+	}
+	return (max);
 }

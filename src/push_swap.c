@@ -18,7 +18,7 @@
  * @param t_stack* stack
  * @return int
  */
-int	stack_size(t_stack *stack)
+static int	stack_size(t_stack *stack)
 {
 	int	i;
 
@@ -29,28 +29,6 @@ int	stack_size(t_stack *stack)
 		i++;
 	}
 	return (i);
-}
-
-/**
- * @brief Get the maximum value of the stack.
- *
- * @param t_stack* stack
- * @return int
- */
-int	stack_max(t_stack *stack)
-{
-	int	max;
-
-	if (!stack)
-		return (-1);
-	max = stack->value;
-	while (stack)
-	{
-		if (stack->value > max)
-			max = stack->value;
-		stack = stack->next;
-	}
-	return (max);
 }
 
 /**
@@ -90,14 +68,7 @@ void	radix_sort(t_stack **a, t_stack **b)
 
 void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*tmp;
-
-	tmp = *stack_a;
-	while (tmp && tmp->next)
-	{
-		if (tmp->value > tmp->next->value)
-			break ;
-		tmp = tmp->next;
-	}
+	if (is_sorted(*stack_a))
+		return ;
 	radix_sort(stack_a, stack_b);
 }

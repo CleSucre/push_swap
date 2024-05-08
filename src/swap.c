@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: julthoma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 08:07:25 by julthoma          #+#    #+#             */
-/*   Updated: 2024/05/04 08:07:25 by julthoma         ###   ########.fr       */
+/*   Created: 2024/05/08 02:15:39 by julthoma          #+#    #+#             */
+/*   Updated: 2024/05/08 02:15:39 by julthoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	sb(t_stack **stack)
  */
 void	ss(t_stack **stack_a, t_stack **stack_b)
 {
-	//TODO: remove printf from the functions
 	sa(stack_a);
 	sb(stack_b);
-	ft_printf("ss\n");
 }

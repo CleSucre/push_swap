@@ -37,7 +37,7 @@ static t_stack	*check_value(const char *str)
 		return (NULL);
 	if (is_n)
 		res *= -1;
-	return (stack_new(res));
+	return (stack_new((int)res));
 }
 
 static t_stack	*check_duplicates(t_stack *stack)
