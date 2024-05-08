@@ -37,7 +37,7 @@ static int	stack_size(t_stack *stack)
  * @param t_stack** stack_a
  * @param t_stack** stack_b
  */
-void	radix_sort(t_stack **a, t_stack **b)
+static void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	max_num;
 	int	max_bits;
@@ -45,24 +45,24 @@ void	radix_sort(t_stack **a, t_stack **b)
 	int	j;
 	int	size;
 
-	max_num = stack_max(*a);
+	max_num = stack_max(*stack_a);
 	max_bits = 0;
 	while ((max_num >> max_bits) != 0)
 		max_bits++;
 	i = -1;
 	while (++i < max_bits)
 	{
-		size = stack_size(*a);
+		size = stack_size(*stack_a);
 		j = 0;
-		while (++j < size)
+		while (j++ < size)
 		{
-			if (((*a)->value >> i) & 1)
-				ra(a);
-			else
-				pb(a, b);
+			if (((*stack_a)->value >> i) & 1)
+				ra(stack_a);
+			else if (j < size)
+				pb(stack_a, stack_b);
 		}
-		while (*b != NULL)
-			pa(a, b);
+		while (*stack_b != NULL)
+			pa(stack_a, stack_b);
 	}
 }
 
@@ -71,4 +71,5 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	if (is_sorted(*stack_a))
 		return ;
 	radix_sort(stack_a, stack_b);
+	push_swap(stack_a, stack_b);
 }
