@@ -39,25 +39,15 @@ void	sa(t_stack **stack)
  */
 void	sb(t_stack **stack)
 {
-	t_stack	*tmp;
+	t_stack	*first;
+	t_stack	*second;
 
-	if (!stack || !*stack || !(*stack)->next)
+	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
-	tmp = (*stack)->next;
-	(*stack)->next = tmp->next;
-	tmp->next = *stack;
-	*stack = tmp;
+	first = *stack;
+	second = first->next;
+	first->next = second->next;
+	second->next = first;
+	*stack = second;
 	ft_printf("sb\n");
-}
-
-/**
- * @brief sa and sb at the same time.
- *
- * @param t_stack** stack_a
- * @param t_stack** stack_b
- */
-void	ss(t_stack **stack_a, t_stack **stack_b)
-{
-	sa(stack_a);
-	sb(stack_b);
 }

@@ -64,5 +64,6 @@ void	ss(t_stack **stack_a, t_stack **stack_b);
 
 void	pa(t_stack **stack_a, t_stack **stack_b);
 void	pb(t_stack **stack_a, t_stack **stack_b);
+void	push(t_stack **top, int value);
 
 #endif

@@ -13,22 +13,11 @@
 #include "push_swap.h"
 
 /**
- * @brief Print the stack. For debugging purposes.
- * @param stack
+ * @brief Check if the stack is sorted.
+ *
+ * @param stack* stack
+ * @return int 1 if the stack is sorted, 0 otherwise
  */
-static void	ft_print_stack(t_stack *stack, const char name)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		ft_printf("stack_%c[%d] = %d\n", name, i, stack->value);
-		stack = stack->next;
-		i++;
-	}
-}
-
 int	is_sorted(t_stack *stack)
 {
 	while (stack && stack->next)
@@ -55,7 +44,6 @@ int	main(int argc, char **argv)
 	}
 	stack_b = NULL;
 	push_swap(&stack_a, &stack_b);
-	ft_print_stack(stack_a, 'a');
 	stack_clear(&stack_a);
 	return (0);
 }
