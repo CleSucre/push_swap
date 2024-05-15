@@ -32,47 +32,12 @@ static int	stack_size(t_stack *stack)
 }
 
 /**
- * @brief Sort the stack using the radix sort algorithm.
- *
- * @param t_stack** stack_a
- * @param t_stack** stack_b
- */
-static void	radix_sort(t_stack **stack_a, t_stack **stack_b)
-{
-	int	max_num;
-	int	max_bits;
-	int	i;
-	int	j;
-	int	size;
-
-	max_num = stack_max(*stack_a);
-	max_bits = 0;
-	while ((max_num >> max_bits) != 0)
-		max_bits++;
-	i = -1;
-	while (++i < max_bits)
-	{
-		size = stack_size(*stack_a);
-		j = 0;
-		while (j++ < size)
-		{
-			if (((*stack_a)->value >> i) & 1)
-				ra(stack_a);
-			else if (j < size)
-				pb(stack_a, stack_b);
-		}
-		while (*stack_b != NULL)
-			pa(stack_a, stack_b);
-	}
-}
-
-/**
  * @brief Get the minimum value of the stack.
  *
  * @param t_stack* stack
  * @return int
  */
-int	stack_min(t_stack *stack)
+static int	stack_min(t_stack *stack)
 {
 	int	min;
 
@@ -86,6 +51,34 @@ int	stack_min(t_stack *stack)
 		stack = stack->next;
 	}
 	return (min);
+}
+
+/**
+ * @brief Sort the stack using the radix sort algorithm.
+ *
+ * @param t_stack** stack_a
+ * @param t_stack** stack_b
+ */
+static void	radix_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	int	i;
+	int	size;
+
+	i = 0;
+	while (i < 32 && !is_sorted(*stack_a))
+	{
+		size = stack_size(*stack_a);
+		while (size-- > 0)
+		{
+			if ((int)((*stack_a)->value ^ (1L << 31)) & (1 << i))
+				ra(stack_a);
+			else if (size > 0)
+				pb(stack_a, stack_b);
+		}
+		while (*stack_b != NULL)
+			pa(stack_a, stack_b);
+		i++;
+	}
 }
 
 /**
@@ -121,5 +114,4 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 		small_sort(stack_a, stack_b);
 	else
 		radix_sort(stack_a, stack_b);
-	push_swap(stack_a, stack_b);
 }

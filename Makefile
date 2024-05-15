@@ -11,7 +11,7 @@ endif
 NAME		= push_swap
 
 SRCS		= src${DIRSEP}main.c src${DIRSEP}push_swap.c src${DIRSEP}moves.c \
-		src${DIRSEP}parsing.c src${DIRSEP}swap.c src${DIRSEP}shift.c src${DIRSEP}push.c
+		src${DIRSEP}parsing.c src${DIRSEP}shift.c src${DIRSEP}push.c
 
 OBJ_PATH	= obj${DIRSEP}
 

@@ -33,6 +33,8 @@ void	stack_clear(t_stack **stack)
  * @brief Create a new stack element.
  *
  * @param int value
+ * @param unsigned int index
+ * @param int is_n
  * @return t_stack*
  */
 t_stack	*stack_new(int value)
@@ -83,27 +85,5 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 		t->next = new;
 	}
 	else
-		*stack = new;
-}
-
-/**
- * @brief Get the maximum value of the stack.
- *
- * @param t_stack* stack
- * @return int
- */
-int	stack_max(t_stack *stack)
-{
-	int	max;
-
-	if (!stack)
-		return (-1);
-	max = stack->value;
-	while (stack)
-	{
-		if (stack->value > max)
-			max = stack->value;
-		stack = stack->next;
-	}
-	return (max);
+		(*stack) = new;
 }

@@ -43,27 +43,14 @@ void	stack_clear(t_stack **stack);
 t_stack	*stack_new(int value);
 t_stack	*stack_last(t_stack *stack);
 void	stack_add_back(t_stack **stack, t_stack *new);
-int		stack_max(t_stack *stack);
 
 // ============ SHIFT ============
 
 void	ra(t_stack **stack);
-void	rra(t_stack **stack);
-void	rrb(t_stack **stack);
-void	rb(t_stack **stack);
-void	rr(t_stack **stack_a, t_stack **stack_b);
-void	rrr(t_stack **stack_a, t_stack **stack_b);
-
-// ============ SWAP ============
-
-void	sa(t_stack **stack);
-void	sb(t_stack **stack);
-void	ss(t_stack **stack_a, t_stack **stack_b);
 
 // ============ PUSH ============
 
 void	pa(t_stack **stack_a, t_stack **stack_b);
 void	pb(t_stack **stack_a, t_stack **stack_b);
-void	push(t_stack **top, int value);
 
 #endif

@@ -20,92 +20,19 @@
 */
 void	ra(t_stack **stack_a)
 {
-	t_stack	*first;
-	t_stack	*last;
+	t_stack	*head;
+	t_stack	*to_free;
+	int		tmp;
 
-	if (!stack_a || !*stack_a || !(*stack_a)->next)
+	if (*stack_a == NULL || (*stack_a)->next == NULL)
 		return ;
-	first = *stack_a;
-	last = *stack_a;
-	while (last->next)
-		last = last->next;
-	*stack_a = first->next;
-	first->next = NULL;
-	last->next = first;
+	tmp = (*stack_a)->value;
+	head = (*stack_a)->next;
+	to_free = *stack_a;
+	while ((*stack_a)->next != NULL)
+		*stack_a = (*stack_a)->next;
+	(*stack_a)->next = stack_new(tmp);
+	*stack_a = head;
+	free(to_free);
 	ft_printf("ra\n");
 }
-
-/**
- * @brief Shift down all elements of stack a by 1.
- * The last element becomes the first one.
- *
- * @param t_stack** stack
- */
-void	rra(t_stack **stack)
-{
-	t_stack	*tmp;
-	t_stack	*last;
-
-	if (!stack || !*stack || !(*stack)->next)
-		return ;
-	last = stack_last(*stack);
-	tmp = *stack;
-	*stack = (*stack)->next;
-	last->next = tmp;
-	tmp->next = NULL;
-	ft_printf("rra\n");
-}
-
-/**
- * @brief Shift down all elements of stack b by 1.
- * The last element becomes the first one.
- *
- * @param t_stack** stack
- */
-void	rrb(t_stack **stack)
-{
-	rra(stack);
-}
-
-/**
- * @brief Shift up all elements of stack b by 1.
- * The first element becomes the last one.
- *
- * @param t_stack** stack
- */
-void	rb(t_stack **stack)
-{
-	t_stack	*first;
-	t_stack	*last;
-
-	if (!stack || !*stack || !(*stack)->next)
-		return ;
-	first = *stack;
-	last = *stack;
-	while (last->next)
-		last = last->next;
-	*stack = first->next;
-	first->next = NULL;
-	last->next = first;
-	ft_printf("rb\n");
-}
-
-/**
- * @brief ra and rb at the same time
- *
- * @param t_stack** stack_a
- * @param t_stack** stack_b
- */
-void	rr(t_stack **stack_a, t_stack **stack_b)
-{
-	ra(stack_a);
-	rb(stack_b);
-}
-
-/*
-void	rrr(t_stack **stack_a, t_stack **stack_b)
-{
-	rra(stack_a);
-	rrb(stack_b);
-}
-*/
