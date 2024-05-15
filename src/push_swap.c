@@ -13,25 +13,6 @@
 #include "push_swap.h"
 
 /**
- * @brief Get the size of the stack.
- *
- * @param t_stack* stack
- * @return int
- */
-static int	stack_size(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (i);
-}
-
-/**
  * @brief Get the minimum value of the stack.
  *
  * @param t_stack* stack
@@ -51,6 +32,25 @@ static int	stack_min(t_stack *stack)
 		stack = stack->next;
 	}
 	return (min);
+}
+
+/**
+ * @brief Sort the stack using a small & basic sort algorithm.
+ *
+ * @param stack_a* stack_a
+ * @param stack_b* stack_b
+ */
+static void	small_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	while (*stack_a)
+	{
+		if ((*stack_a)->value == stack_min(*stack_a))
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a);
+	}
+	while (*stack_b)
+		pa(stack_a, stack_b);
 }
 
 /**
@@ -82,26 +82,7 @@ static void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 }
 
 /**
- * @brief Sort the stack using a small & basic sort algorithm.
- *
- * @param stack_a* stack_a
- * @param stack_b* stack_b
- */
-static void	small_sort(t_stack **stack_a, t_stack **stack_b)
-{
-	while (*stack_a)
-	{
-		if ((*stack_a)->value == stack_min(*stack_a))
-			pb(stack_a, stack_b);
-		else
-			ra(stack_a);
-	}
-	while (*stack_b)
-		pa(stack_a, stack_b);
-}
-
-/**
- * @brief Sort the stack.
+ * @brief Choose the best sorting algorithm depending on the stack size.
  *
  * @param t_stack** stack_a
  * @param t_stack** stack_b

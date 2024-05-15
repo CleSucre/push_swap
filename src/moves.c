@@ -1,89 +1,78 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   take.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julthoma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 17:47:05 by julthoma          #+#    #+#             */
-/*   Updated: 2024/01/12 17:47:05 by julthoma         ###   ########.fr       */
+/*   Created: 2024/05/04 08:07:20 by julthoma          #+#    #+#             */
+/*   Updated: 2024/05/04 08:07:20 by julthoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * @brief Clear the stack.
+ * @brief Take the first element at the top of b and put it at the top of a.
+ * Do nothing if b is empty.
  *
- * @param t_stack** stack
+ * @param t_stack** stack_a
+ * @param t_stack** stack_b
  */
-void	stack_clear(t_stack **stack)
+void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*t;
+	t_stack	*tmp;
 
-	while (*stack)
-	{
-		t = (*stack)->next;
-		free(*stack);
-		(*stack) = t;
-	}
-}
-
-/**
- * @brief Create a new stack element.
- *
- * @param int value
- * @param unsigned int index
- * @param int is_n
- * @return t_stack*
- */
-t_stack	*stack_new(int value)
-{
-	t_stack	*new;
-
-	new = (t_stack *)malloc(sizeof(t_stack));
-	if (!new)
-		return (NULL);
-	new->value = value;
-	new->next = NULL;
-	return (new);
-}
-
-/**
- * @brief Get the last element of the stack.
- *
- * @param t_stack* stack
- * @return t_stack*
- */
-t_stack	*stack_last(t_stack *stack)
-{
-	t_stack	*t;
-
-	if (!stack)
-		return (NULL);
-	t = stack;
-	while (t->next)
-		t = t->next;
-	return (t);
-}
-
-/**
- * @brief Add a new element at the beginning of the stack.
- *
- * @param t_stack** stack
- * @param t_stack* new
- */
-void	stack_add_back(t_stack **stack, t_stack *new)
-{
-	t_stack	*t;
-
-	if (!stack || !new)
+	if (!*stack_b)
 		return ;
-	if (*stack)
-	{
-		t = stack_last(*stack);
-		t->next = new;
-	}
-	else
-		(*stack) = new;
+	tmp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	tmp->next = *stack_a;
+	*stack_a = tmp;
+	ft_printf("pa\n");
+}
+
+/**
+ * @brief Take the first element at the top of a and put it at the top of b.
+ * Do nothing if a is empty.
+ *
+ * @param t_stack** stack_a
+ * @param t_stack** stack_b
+ */
+void	pb(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*tmp;
+
+	if (!*stack_a)
+		return ;
+	tmp = *stack_a;
+	*stack_a = (*stack_a)->next;
+	tmp->next = *stack_b;
+	*stack_b = tmp;
+	ft_printf("pb\n");
+}
+
+/**
+ * @brief Shift up all elements of stack a by 1.
+ * The first element becomes the last one.
+ *
+ * @param t_stack** stack
+*/
+void	ra(t_stack **stack_a)
+{
+	t_stack	*head;
+	t_stack	*to_free;
+	int		tmp;
+
+	if (*stack_a == NULL || (*stack_a)->next == NULL)
+		return ;
+	tmp = (*stack_a)->value;
+	head = (*stack_a)->next;
+	to_free = *stack_a;
+	while ((*stack_a)->next != NULL)
+		*stack_a = (*stack_a)->next;
+	(*stack_a)->next = stack_new(tmp);
+	*stack_a = head;
+	free(to_free);
+	ft_printf("ra\n");
 }
