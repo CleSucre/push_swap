@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	stack_a = ft_parsing((const char **)argv + 1, NULL);
 	if (stack_a == NULL)
 	{
-		ft_printf("Error\n");
+		ft_fprintf(2, "Error\n");
 		return (2);
 	}
 	stack_b = NULL;

@@ -25,8 +25,6 @@ static t_stack	*check_value(const char *str)
 			is_n = 1;
 	while (*str == '0')
 		str++;
-	if (ft_strlen(str) > 11)
-		return (NULL);
 	res = 0;
 	while (ft_isdigit(*str))
 		res = res * 10 + (*str++ - '0');
@@ -37,6 +35,8 @@ static t_stack	*check_value(const char *str)
 		return (NULL);
 	if (is_n)
 		res *= -1;
+	if (res > INT_MAX || res < INT_MIN)
+		return (NULL);
 	return (stack_new((int)res));
 }
 
@@ -63,6 +63,17 @@ static t_stack	*check_duplicates(t_stack *stack)
 	return (stack);
 }
 
+static int	is_empty(const char *str)
+{
+	while (*str)
+	{
+		if (!ft_isspace(*str))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
 t_stack	*ft_parsing(const char **argv, t_stack *stack)
 {
 	t_stack	*new_stack;
@@ -71,8 +82,8 @@ t_stack	*ft_parsing(const char **argv, t_stack *stack)
 
 	while (*argv)
 	{
-		values = ft_split(*argv++, WHITESPACES);
-		if (values == NULL)
+		values = ft_split(*argv, WHITESPACES);
+		if (values == NULL || is_empty(*argv++))
 			return (NULL);
 		i = -1;
 		while (values[++i])
