@@ -17,7 +17,7 @@
  *
  * @param t_stack** stack
  */
-void	stack_clear(t_stack **stack)
+void	*stack_clear(t_stack **stack)
 {
 	t_stack	*t;
 
@@ -27,6 +27,7 @@ void	stack_clear(t_stack **stack)
 		free(*stack);
 		(*stack) = t;
 	}
+	return (NULL);
 }
 
 /**

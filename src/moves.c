@@ -33,26 +33,6 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 }
 
 /**
- * @brief Take the first element at the top of a and put it at the top of b.
- * Do nothing if a is empty.
- *
- * @param t_stack** stack_a
- * @param t_stack** stack_b
- */
-void	pb(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack	*tmp;
-
-	if (!*stack_a)
-		return ;
-	tmp = *stack_a;
-	*stack_a = (*stack_a)->next;
-	tmp->next = *stack_b;
-	*stack_b = tmp;
-	ft_printf("pb\n");
-}
-
-/**
  * @brief Swap the first 2 elements at the top of stack a.
  * Do nothing if there is only one or no elements.
  *
