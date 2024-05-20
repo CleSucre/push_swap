@@ -12,17 +12,48 @@
 
 #include "push_swap.h"
 
-static void	ft_print_stack(t_stack *stack, char name)
+/**
+ * @brief Get the minimum value of the stack.
+ *
+ * @param t_stack* stack
+ * @return int
+ */
+int	stack_min(t_stack *stack)
 {
-	int	i;
+	int	min;
 
-	i = 0;
+	if (!stack)
+		return (-1);
+	min = stack->value;
 	while (stack)
 	{
-		ft_printf("stack_%c[%d] = %d\n", name, i, stack->value);
+		if (stack->value < min)
+			min = stack->value;
 		stack = stack->next;
-		i++;
 	}
+	return (min);
+}
+
+/**
+ * @brief Get the maximum value of the stack.
+ *
+ * @param t_stack* stack
+ * @return int
+ */
+int	stack_max(t_stack *stack)
+{
+	int	max;
+
+	if (!stack)
+		return (-1);
+	max = stack->value;
+	while (stack)
+	{
+		if (stack->value > max)
+			max = stack->value;
+		stack = stack->next;
+	}
+	return (max);
 }
 
 /**
@@ -57,7 +88,6 @@ int	main(int argc, char **argv)
 	}
 	stack_b = NULL;
 	push_swap(&stack_a, &stack_b);
-    //ft_print_stack(stack_a, 'a');
 	stack_clear(&stack_a);
 	return (0);
 }

@@ -84,10 +84,10 @@ t_stack	*ft_parsing(const char **argv, t_stack *stack)
 	{
 		values = ft_split(*argv, WHITESPACES);
 		if (values == NULL || is_empty(*argv++))
-        {
-            ft_freetab(values);
-            return (NULL);
-        }
+		{
+			ft_freetab(values);
+			return (NULL);
+		}
 		i = -1;
 		while (values[++i])
 		{

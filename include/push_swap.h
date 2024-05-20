@@ -27,6 +27,8 @@ typedef struct s_stack
 
 // ============ MAIN ============
 
+int		stack_max(t_stack *stack);
+int		stack_min(t_stack *stack);
 int		is_sorted(t_stack *stack);
 
 // ============ PUSH_SWAP ============
