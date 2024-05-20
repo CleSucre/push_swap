@@ -12,6 +12,19 @@
 
 #include "push_swap.h"
 
+static void	ft_print_stack(t_stack *stack, char name)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		ft_printf("stack_%c[%d] = %d\n", name, i, stack->value);
+		stack = stack->next;
+		i++;
+	}
+}
+
 /**
  * @brief Check if the stack is sorted.
  *
@@ -44,6 +57,7 @@ int	main(int argc, char **argv)
 	}
 	stack_b = NULL;
 	push_swap(&stack_a, &stack_b);
+    //ft_print_stack(stack_a, 'a');
 	stack_clear(&stack_a);
 	return (0);
 }

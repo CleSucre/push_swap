@@ -49,6 +49,9 @@ int		stack_size(t_stack *stack);
 
 void	pa(t_stack **stack_a, t_stack **stack_b);
 void	pb(t_stack **stack_a, t_stack **stack_b);
+void    sa(t_stack **stack_a);
+void	rb(t_stack **stack_b);
 void	ra(t_stack **stack);
+void    rra(t_stack **stack_a);
 
 #endif
