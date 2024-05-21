@@ -19,7 +19,7 @@
  * @param t_stack** stack_a
  * @param t_stack** stack_b
  */
-void	pb(t_stack **stack_a, t_stack **stack_b, int print)
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
 
@@ -29,8 +29,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b, int print)
 	*stack_a = (*stack_a)->next;
 	tmp->next = *stack_b;
 	*stack_b = tmp;
-    if (print)
-	    ft_printf("pb\n");
+	ft_printf("pb\n");
 }
 
 /**
@@ -94,6 +93,34 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
+static void print_binary(int n)
+{
+    int i;
+
+    i = 31;
+    while (i >= 0)
+    {
+        if (n & (1 << i))
+            ft_printf("1");
+        else
+            ft_printf("0");
+        if (i % 8 == 0 && i != 0)
+            ft_printf(" ");
+        i--;
+    }
+}
+
+static void print_stack(t_stack *stack)
+{
+    while (stack)
+    {
+        ft_printf("%d (" , stack->value);
+        print_binary(stack->value);
+        ft_printf(")\n");
+        stack = stack->next;
+    }
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
@@ -109,6 +136,7 @@ int	main(int argc, char **argv)
 	}
 	stack_b = NULL;
 	push_swap(&stack_a, &stack_b);
-	stack_clear(&stack_a);
+    //print_stack(stack_a);
+    stack_clear(&stack_a);
 	return (0);
 }

@@ -22,8 +22,6 @@
 typedef struct s_stack
 {
 	int					value;
-	int					init_index;
-	int					index;
 	struct s_stack		*next;
 }						t_stack;
 
@@ -51,11 +49,11 @@ int		stack_size(t_stack *stack);
 
 // ============ MOVES ============
 
-void	pa(t_stack **stack_a, t_stack **stack_b, int print);
-void	pb(t_stack **stack_a, t_stack **stack_b, int print);
+void	pa(t_stack **stack_a, t_stack **stack_b);
+void	pb(t_stack **stack_a, t_stack **stack_b);
 void	sa(t_stack **stack_a);
 void	rb(t_stack **stack_b);
-void	ra(t_stack **stack, int print);
+void	ra(t_stack **stack);
 void	rra(t_stack **stack_a);
 
 #endif
