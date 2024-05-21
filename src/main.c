@@ -19,7 +19,7 @@
  * @param t_stack** stack_a
  * @param t_stack** stack_b
  */
-void	pb(t_stack **stack_a, t_stack **stack_b)
+void	pb(t_stack **stack_a, t_stack **stack_b, int print)
 {
 	t_stack	*tmp;
 
@@ -29,7 +29,8 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 	*stack_a = (*stack_a)->next;
 	tmp->next = *stack_b;
 	*stack_b = tmp;
-	ft_printf("pb\n");
+    if (print)
+	    ft_printf("pb\n");
 }
 
 /**

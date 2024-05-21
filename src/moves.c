@@ -19,7 +19,7 @@
  * @param t_stack** stack_a
  * @param t_stack** stack_b
  */
-void	pa(t_stack **stack_a, t_stack **stack_b)
+void	pa(t_stack **stack_a, t_stack **stack_b, int print)
 {
 	t_stack	*tmp;
 
@@ -29,7 +29,8 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 	*stack_b = (*stack_b)->next;
 	tmp->next = *stack_a;
 	*stack_a = tmp;
-	ft_printf("pa\n");
+	if (print)
+	    ft_printf("pa\n");
 }
 
 /**
@@ -81,7 +82,7 @@ void	rb(t_stack **stack_b)
  *
  * @param t_stack** stack
 */
-void	ra(t_stack **stack_a)
+void	ra(t_stack **stack_a, int print)
 {
 	t_stack	*head;
 	t_stack	*to_free;
@@ -97,7 +98,8 @@ void	ra(t_stack **stack_a)
 	(*stack_a)->next = stack_new(tmp);
 	*stack_a = head;
 	free(to_free);
-	ft_printf("ra\n");
+    if (print)
+	    ft_printf("ra\n");
 }
 
 /**
