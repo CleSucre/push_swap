@@ -29,7 +29,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 	*stack_a = (*stack_a)->next;
 	tmp->next = *stack_b;
 	*stack_b = tmp;
-	//ft_printf("pb\n");
+	ft_printf("pb\n");
 }
 
 /**
@@ -93,38 +93,11 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-static void print_binary(int n)
-{
-    int i;
-
-    i = 31;
-    while (i >= 0)
-    {
-        if (n & (1 << i))
-            ft_printf("1");
-        else
-            ft_printf("0");
-        if (i % 8 == 0 && i != 0)
-            ft_printf(" ");
-        i--;
-    }
-}
-
-static void print_stack(t_stack *stack)
-{
-    ft_printf("\n");
-    while (stack)
-    {
-        print_binary(stack->value);
-        ft_printf(" : %d\n", stack->value);
-        stack = stack->next;
-    }
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	int		size;
 
 	if (argc == 1)
 		return (1);
@@ -135,8 +108,15 @@ int	main(int argc, char **argv)
 		return (2);
 	}
 	stack_b = NULL;
-	push_swap(&stack_a, &stack_b);
-    print_stack(stack_a);
-    stack_clear(&stack_a);
+	size = stack_size(stack_a);
+	if (size <= 3)
+		tiny_sort(&stack_a);
+	else if (size <= 5)
+		small_sort(&stack_a, &stack_b);
+	else if (size <= 30)
+		medium_sort(&stack_a, &stack_b);
+	else
+		radix_sort(&stack_a, &stack_b);
+	stack_clear(&stack_a);
 	return (0);
 }

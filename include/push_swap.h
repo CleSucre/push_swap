@@ -33,7 +33,10 @@ int		is_sorted(t_stack *stack);
 
 // ============ PUSH_SWAP ============
 
-void	push_swap(t_stack **stack_a, t_stack **stack_b);
+void	tiny_sort(t_stack **stack_a);
+void	small_sort(t_stack **stack_a, t_stack **stack_b);
+void	medium_sort(t_stack **stack_a, t_stack **stack_b);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 
 // ============ PARSING ============
 
@@ -55,5 +58,10 @@ void	sa(t_stack **stack_a);
 void	rb(t_stack **stack_b);
 void	ra(t_stack **stack);
 void	rra(t_stack **stack_a);
+
+// ============ BITS ============
+
+int		max_bits(int n);
+int		swap_bits(int n, int start, int stop);
 
 #endif
