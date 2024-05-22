@@ -98,13 +98,17 @@ static void	medium_sort(t_stack **stack_a, t_stack **stack_b)
 		pa(stack_a, stack_b);
 }
 
-/**
- * @brief Index the stack starting from smallest value.
- * @param stack
- */
-static void index_stack(t_stack *stack)
+static int max_bits(int n)
 {
+    int i;
 
+    i = 0;
+    while (n > 0)
+    {
+        n = n >> 1;
+        i++;
+    }
+    return (i);
 }
 
 int    translate(int start) {
@@ -133,14 +137,13 @@ unsigned int invertBits(unsigned int num) {
     return inverted_num;
 }
 
-static int slide_bits(int n, int i)
+static int slide_right_bits(int n, int i)
 {
     int tmp;
 
     tmp = n >> i;
     while (i > 0)
     {
-        //set bit at i-th position
         if (tmp & (1 << (i + 1)))
             tmp = tmp ^ (1L << (i + 1));
         i--;
@@ -148,15 +151,52 @@ static int slide_bits(int n, int i)
     return (tmp >> i);
 }
 
-static void print_stack(t_stack *stack)
+static int slide_left_bits(int n, int i)
 {
-    while (stack)
+    int tmp;
+
+    tmp = n << i;
+    while (i > 0)
     {
-        ft_printf("%d (" , stack->value);
-        print_binary(stack->value);
-        ft_printf(")\n");
-        stack = stack->next;
+        if (tmp & (1 << (i + 1)))
+            tmp = tmp ^ (1L << (i + 1));
+        i--;
     }
+}
+
+static void debug(int n)
+{
+    print_binary(n);
+    ft_printf(" : %d\n", n);
+}
+
+static int swap_all_bits(int n)
+{
+    return (translate(n) >> (31 - max_bits(n)));
+}
+
+/*
+static int swap_bits(int n, int i)
+{
+    return (translate(n) >> (31 - i));
+}
+ */
+
+static int swap_bits(int n, int start, int stop)
+{
+    //turn swap all bits from start to stop
+    int mask;
+    int i;
+
+    i = 0;
+    mask = 0;
+    while (i < 32)
+    {
+        if (i >= start && i <= stop)
+            mask |= 1 << i;
+        i++;
+    }
+    return (n & ~mask);
 }
 
 /**
@@ -175,110 +215,79 @@ static void	radix_sort(t_stack **stack_a, t_stack **stack_b)
     int conv;
     int tmp;
     int min;
+    int modulo;
+    int is_modulo;
     int yy;
     int max;
 
-    min = stack_min(*stack_a);
-    max = stack_max(*stack_a);
-    //ft_printf("max = %d\n", max);
-    max_bit = 0;
-    while (max > 0)
-    {
-        max = max >> 1;
-        max_bit++;
-    }
-    min = -min;
-    min_bit = 0;
-    while (min > 0)
-    {
-        min = min >> 1;
-        min_bit++;
-    }
-
-
-    min = stack_min(*stack_a);
-    min = -min;
-    min = translate(min);
-    min_bit_m = 0;
-    while (min > 0)
-    {
-        min = min >> 1;
-        min_bit_m++;
-    }
-
-    i = 0;
+    is_modulo = !(min % 2);
+    max_bit = max_bits(stack_max(*stack_a));
+    min_bit = max_bits(-stack_min(*stack_a));
+    //min_bit_m = max_bits(translate((-stack_min(*stack_a))));
     if (min_bit > max_bit)
         max_bit = min_bit;
-    //ft_printf("max_bit = %d\n", max_bit);
-	while (i <= max_bit) {
-        size = stack_size(*stack_a);
-        while (size-- > 0) {
-            tmp = (*stack_a)->value;
-            /*
-			ft_printf("%d (", tmp);
-			print_binary(tmp);
-			ft_printf(") ------------>");
 
-			ft_printf("%d (", ft_translate(-tmp));
-			print_binary(ft_translate(-tmp));
-			ft_printf(") ------------>");
-             */
-            if (tmp < 0) {
-                //tmp = -tmp;
-                tmp = tmp;
-                yy = 1L;
-                /*tmp = translate(tmp);
-                conv = 0;
-                while (conv < 32)
+    //ft_printf("is_modulo = %d\n", is_modulo);
+    //ft_printf("max_bit = %d & min_bit = %d\n", max_bit, min_bit);
+
+    i = 0;
+	while (i <= max_bit && !is_sorted(*stack_a))
+	{
+		size = stack_size(*stack_a);
+		while (size-- > 0)
+		{
+			tmp = (*stack_a)->value;
+			if (tmp < 0)
+            {
+                tmp = -tmp;
+
+                modulo = !(tmp % 2);
+                yy = max_bits(tmp);
+
+                tmp = ~tmp;
+                tmp = swap_bits(tmp, min_bit, max_bit);
+
+                /*
+                if (modulo)
                 {
-                    if (tmp & (1 << conv))
-                        break ;
-                    conv++;
+                    tmp = tmp | (1L << 0);
                 }
-                tmp = (tmp >> min_bit_m);
-                yy = 1L;
-
-                max = tmp;
-                conv = 0;
-                while (max > 0)
+                 */
+                /*
+                yy = max_bits(tmp);
+                tmp = swap_bits(tmp, min_bit);
+                if (!modulo && yy != min_bit)
                 {
-                    max = max >> 1;
-                    conv++;
-                }*/
-            } else {
-                yy = 1L;
-                tmp = tmp | (1L << (max_bit)); // ^
+                    tmp = tmp << 1;
+                }
+                debug(tmp);
+                 */
+                /*
+                if (modulo)
+                {
+                    ft_printf("min_bit %d - yy %d - modulo %d total %d\n", min_bit, yy, modulo, min_bit - yy - modulo);
+                    tmp = tmp << (min_bit - yy - modulo);
+                }
+                else
+                {
+                    tmp = swap_bits(tmp);
+                    tmp = tmp;
+                }
+                 */
             }
-            //ft_printf(" %d (", tmp);
-            //print_binary(tmp);
-            //ft_printf(")\n");
-            if (tmp & (yy << i))
-                ra(stack_a);
-            else if (size > 0)
-                pb(stack_a, stack_b);
-        }
-        while (*stack_b != NULL)
-            pa(stack_a, stack_b);
-        i++;
-    }
-    print_stack(*stack_a);
-    size = stack_size(*stack_a);
-    while (size-- > 0)
-    {
-        tmp = (*stack_a)->value;
-        if (tmp & (1L << 31))
-        {
-            pb(stack_a, stack_b);
-            //ft_printf("pb tmp : %d\n", tmp);
-        }
-        else if (size > 0)
-        {
-            ra(stack_a);
-            //ft_printf("ra tmp : %d\n", tmp);
-        }
-    }
-    while (*stack_b != NULL)
-        pa(stack_a, stack_b);
+			else
+            {
+                tmp ^= (1L << max_bit);
+            }
+			if (tmp & (1L << i))
+				ra(stack_a);
+			else if (size > 0)
+				pb(stack_a, stack_b);
+		}
+		while (*stack_b != NULL)
+			pa(stack_a, stack_b);
+		i++;
+	}
 }
 
 /**

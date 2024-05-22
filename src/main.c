@@ -29,7 +29,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 	*stack_a = (*stack_a)->next;
 	tmp->next = *stack_b;
 	*stack_b = tmp;
-	ft_printf("pb\n");
+	//ft_printf("pb\n");
 }
 
 /**
@@ -112,11 +112,11 @@ static void print_binary(int n)
 
 static void print_stack(t_stack *stack)
 {
+    ft_printf("\n");
     while (stack)
     {
-        ft_printf("%d (" , stack->value);
         print_binary(stack->value);
-        ft_printf(")\n");
+        ft_printf(" : %d\n", stack->value);
         stack = stack->next;
     }
 }
@@ -136,7 +136,7 @@ int	main(int argc, char **argv)
 	}
 	stack_b = NULL;
 	push_swap(&stack_a, &stack_b);
-    //print_stack(stack_a);
+    print_stack(stack_a);
     stack_clear(&stack_a);
 	return (0);
 }
