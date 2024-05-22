@@ -32,6 +32,12 @@ void	tiny_sort(t_stack **stack_a)
 		sa(stack_a);
 }
 
+/**
+ * @brief Sort the stack equal to or smaller than 5.
+ *
+ * @param stack_a* stack_a
+ * @param stack_b* stack_b
+ */
 void	small_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	min;
@@ -78,24 +84,6 @@ void	medium_sort(t_stack **stack_a, t_stack **stack_b)
 	}
 	while (*stack_b)
 		pa(stack_a, stack_b);
-}
-
-static int	transform(int n, int max_bit, int min_bit)
-{
-	int	res;
-
-	res = n;
-	if (res < 0)
-	{
-		res = ~(-res);
-		if (res == n)
-			res ^= (1L << 31);
-		else
-			res = swap_bits(res, min_bit, max_bit);
-	}
-	else
-		res ^= (1L << max_bit);
-	return (res);
 }
 
 /**

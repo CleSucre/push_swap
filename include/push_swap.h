@@ -62,6 +62,6 @@ void	rra(t_stack **stack_a);
 // ============ BITS ============
 
 int		max_bits(int n);
-int		swap_bits(int n, int start, int stop);
+int		transform(int n, int max_bit, int min_bit);
 
 #endif
