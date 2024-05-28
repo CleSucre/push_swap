@@ -104,7 +104,7 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 	if (min_bit > max_bit)
 		max_bit = min_bit;
 	i = 0;
-	while (i <= max_bit && !is_sorted(*stack_a))
+	while (i <= max_bit || !is_sorted(*stack_a))
 	{
 		size = stack_size(*stack_a);
 		while (size-- > 0)

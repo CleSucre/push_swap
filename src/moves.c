@@ -62,7 +62,7 @@ void	rb(t_stack **stack_b)
 	t_stack	*to_free;
 	int		tmp;
 
-	if (*stack_b == NULL || (*stack_b)->next == NULL)
+	if (*stack_b == NULL)
 		return ;
 	tmp = (*stack_b)->value;
 	head = (*stack_b)->next;

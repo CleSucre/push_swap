@@ -107,6 +107,11 @@ int	main(int argc, char **argv)
 		ft_fprintf(2, "Error\n");
 		return (2);
 	}
+    if (is_sorted(stack_a))
+    {
+        stack_clear(&stack_a);
+        return (0);
+    }
 	stack_b = NULL;
 	size = stack_size(stack_a);
 	if (size <= 3)
