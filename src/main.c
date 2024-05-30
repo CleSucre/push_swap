@@ -107,16 +107,11 @@ int	main(int argc, char **argv)
 		ft_fprintf(2, "Error\n");
 		return (2);
 	}
-    if (is_sorted(stack_a))
-    {
-        stack_clear(&stack_a);
-        return (0);
-    }
 	stack_b = NULL;
 	size = stack_size(stack_a);
 	if (size <= 3)
 		tiny_sort(&stack_a);
-	else if (size <= 5)
+	else if (size <= 5 && !is_sorted(stack_a))
 		small_sort(&stack_a, &stack_b);
 	else if (size <= 30)
 		medium_sort(&stack_a, &stack_b);

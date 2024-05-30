@@ -75,6 +75,8 @@ void	small_sort(t_stack **stack_a, t_stack **stack_b)
  */
 void	medium_sort(t_stack **stack_a, t_stack **stack_b)
 {
+	if (is_sorted(*stack_a))
+		return ;
 	while (*stack_a)
 	{
 		if ((*stack_a)->value == stack_min(*stack_a))
