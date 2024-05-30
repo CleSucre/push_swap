@@ -115,7 +115,7 @@ int	main(int argc, char **argv)
 		small_sort(&stack_a, &stack_b);
 	else if (size <= 30)
 		medium_sort(&stack_a, &stack_b);
-	else
+	else if (!is_sorted(stack_a))
 		radix_sort(&stack_a, &stack_b);
 	stack_clear(&stack_a);
 	return (0);
