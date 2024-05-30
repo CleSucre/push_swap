@@ -53,7 +53,7 @@ void	small_sort(t_stack **stack_a, t_stack **stack_b)
 			ra(stack_a);
 	}
 	tiny_sort(stack_a);
-	while (*stack_b)
+	while (*stack_b && (*stack_b)->next != NULL)
 	{
 		if ((*stack_b)->value == max)
 		{

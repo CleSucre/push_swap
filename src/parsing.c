@@ -12,9 +12,10 @@
 
 #include "push_swap.h"
 
-static void	*freetab(char **tab)
+static void	*free_all(char **tab, t_stack **stack)
 {
 	ft_freetab(tab);
+	stack_clear(stack);
 	return (NULL);
 }
 
@@ -90,16 +91,13 @@ t_stack	*ft_parsing(const char **argv, t_stack *stack)
 	{
 		values = ft_split(*argv, WHITESPACES);
 		if (values == NULL || is_empty(*argv++))
-			return (freetab(values));
+			return (free_all(values, &stack));
 		i = -1;
 		while (values[++i])
 		{
 			new_stack = check_value(values[i]);
 			if (new_stack == NULL)
-			{
-				ft_freetab(values);
-				return (stack_clear(&stack));
-			}
+				return (free_all(values, &stack));
 			stack_add_back(&stack, new_stack);
 		}
 		ft_freetab(values);
