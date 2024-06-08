@@ -28,10 +28,11 @@ static t_stack	*check_value(const char *str)
 		str++;
 	is_n = 0;
 	if (*str == '-' || *str == '+')
-		if (*str++ == '-')
-			is_n = 1;
+		is_n = (*str++ == '-');
 	while (*str == '0')
 		str++;
+	if (ft_strlen(str) > 11)
+		return (NULL);
 	res = 0;
 	while (ft_isdigit(*str))
 		res = res * 10 + (*str++ - '0');
