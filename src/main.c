@@ -33,7 +33,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 }
 
 /**
- * @brief Get the minimum value of the stack.
+ * @brief Get the minimum index of the stack.
  *
  * @param t_stack* stack
  * @return int
@@ -44,18 +44,18 @@ int	stack_min(t_stack *stack)
 
 	if (!stack)
 		return (-1);
-	min = stack->value;
+	min = stack->index;
 	while (stack)
 	{
-		if (stack->value < min)
-			min = stack->value;
+		if (stack->index < min)
+			min = stack->index;
 		stack = stack->next;
 	}
 	return (min);
 }
 
 /**
- * @brief Get the maximum value of the stack.
+ * @brief Get the maximum index of the stack.
  *
  * @param t_stack* stack
  * @return int
@@ -66,11 +66,11 @@ int	stack_max(t_stack *stack)
 
 	if (!stack)
 		return (-1);
-	max = stack->value;
+	max = stack->index;
 	while (stack)
 	{
-		if (stack->value > max)
-			max = stack->value;
+		if (stack->index > max)
+			max = stack->index;
 		stack = stack->next;
 	}
 	return (max);
