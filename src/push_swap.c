@@ -105,11 +105,10 @@ void	index_stack(t_stack **stack)
 	{
 		count = 0;
 		tmp2 = *stack;
-		while (tmp2) {
+		while (tmp2)
+		{
 			if (tmp->value > tmp2->value)
-			{
 				count++;
-			}
 			tmp2 = tmp2->next;
 		}
 		tmp->index = count;
@@ -130,7 +129,7 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 	int	size;
 	int	i;
 
-    index_stack(stack_a);
+	index_stack(stack_a);
 	max_bit = max_bits(stack_max(*stack_a));
 	min_bit = max_bits(-stack_min(*stack_a));
 	if (min_bit > max_bit)
@@ -141,7 +140,6 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 		size = stack_size(*stack_a);
 		while (size-- > 0)
 		{
-			//if (transform((*stack_a)->value, max_bit, min_bit) & (1L << i))
 			if ((*stack_a)->index & (1L << i))
 				ra(stack_a);
 			else if (size > 0)

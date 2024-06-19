@@ -65,7 +65,7 @@ void	rb(t_stack **stack_b)
 	t_stack	*head;
 	t_stack	*to_free;
 	int		tmp;
-	int 	tmp2;
+	int		tmp2;
 
 	if (*stack_b == NULL || (*stack_b)->next == NULL)
 		return ;
@@ -93,7 +93,7 @@ void	ra(t_stack **stack_a)
 	t_stack	*head;
 	t_stack	*to_free;
 	int		tmp;
-	int 	tmp2;
+	int		tmp2;
 
 	if (*stack_a == NULL || (*stack_a)->next == NULL)
 		return ;
