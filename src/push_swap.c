@@ -130,8 +130,8 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 	int	i;
 
 	index_stack(stack_a);
-	max_bit = max_bits(stack_max(*stack_a));
-	min_bit = max_bits(-stack_min(*stack_a));
+	max_bit = max_bits(stack_max_index(*stack_a));
+	min_bit = max_bits(-stack_min_index(*stack_a));
 	if (min_bit > max_bit)
 		max_bit = min_bit;
 	i = 0;

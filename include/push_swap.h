@@ -28,8 +28,6 @@ typedef struct s_stack
 
 // ============ MAIN ============
 
-int		stack_max(t_stack *stack);
-int		stack_min(t_stack *stack);
 int		is_sorted(t_stack *stack);
 
 // ============ PUSH_SWAP ============
@@ -49,7 +47,14 @@ void	*stack_clear(t_stack **stack);
 t_stack	*stack_new(int value);
 t_stack	*stack_last(t_stack *stack);
 void	stack_add_back(t_stack **stack, t_stack *new);
+
+// ========== STACK_SIZE ==========
+
 int		stack_size(t_stack *stack);
+int		stack_max(t_stack *stack);
+int		stack_min(t_stack *stack);
+int		stack_max_index(t_stack *stack);
+int		stack_min_index(t_stack *stack);
 
 // ============ MOVES ============
 

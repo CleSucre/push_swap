@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julthoma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 17:47:05 by julthoma          #+#    #+#             */
-/*   Updated: 2024/01/12 17:47:05 by julthoma         ###   ########.fr       */
+/*   Created: 2024/06/19 23:37:00 by julthoma          #+#    #+#             */
+/*   Updated: 2024/06/19 23:37:00 by julthoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_stack	*stack_new(int value)
 	if (!new)
 		return (NULL);
 	new->value = value;
+	new->index = 0;
 	new->next = NULL;
 	return (new);
 }
@@ -87,23 +88,4 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 	}
 	else
 		(*stack) = new;
-}
-
-/**
- * @brief Get the size of the stack.
- *
- * @param t_stack* stack
- * @return int
- */
-int	stack_size(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (i);
 }
