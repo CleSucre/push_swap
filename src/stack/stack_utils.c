@@ -44,6 +44,7 @@ t_stack	*stack_new(int value)
 	if (!new)
 		return (NULL);
 	new->value = value;
+	new->index = 0;
 	new->next = NULL;
 	return (new);
 }

@@ -74,3 +74,47 @@ int	stack_max(t_stack *stack)
 	}
 	return (max);
 }
+
+/**
+ * @brief Get the minimum index of the stack.
+ *
+ * @param t_stack *stack
+ * @return int
+ */
+int	stack_min_index(t_stack *stack)
+{
+	int	min;
+
+	if (!stack)
+		return (-1);
+	min = stack->index;
+	while (stack)
+	{
+		if (stack->index < min)
+			min = stack->index;
+		stack = stack->next;
+	}
+	return (min);
+}
+
+/**
+ * @brief Get the maximum index of the stack.
+ *
+ * @param t_stack *stack
+ * @return int
+ */
+int	stack_max_index(t_stack *stack)
+{
+	int	max;
+
+	if (!stack)
+		return (-1);
+	max = stack->index;
+	while (stack)
+	{
+		if (stack->index > max)
+			max = stack->index;
+		stack = stack->next;
+	}
+	return (max);
+}

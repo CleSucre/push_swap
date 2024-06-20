@@ -21,11 +21,15 @@
 void	sa(t_stack **stack_a)
 {
 	int	tmp;
+	int	tmp2;
 
 	if (*stack_a == NULL || (*stack_a)->next == NULL)
 		return ;
 	tmp = (*stack_a)->value;
+	tmp2 = (*stack_a)->index;
 	(*stack_a)->value = (*stack_a)->next->value;
+	(*stack_a)->index = (*stack_a)->next->index;
 	(*stack_a)->next->value = tmp;
+	(*stack_a)->next->index = tmp2;
 	ft_printf("sa\n");
 }

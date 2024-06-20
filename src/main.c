@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	else if (size <= 30)
 		medium_sort(&stack_a, &stack_b);
 	else if (!is_sorted(stack_a))
-		god_sort(&stack_a, &stack_b);
+		radix_sort(&stack_a, &stack_b);
 	stack_clear(&stack_a);
 	return (0);
 }

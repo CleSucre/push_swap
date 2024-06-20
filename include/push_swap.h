@@ -22,12 +22,13 @@
 typedef struct s_stack
 {
 	int					value;
+	int					index;
 	struct s_stack		*next;
 }						t_stack;
 
-// ============ GOD_SORT ============
+// ============ RADIX_SORT ============
 
-void	god_sort(t_stack **stack_a, t_stack **stack_b);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 
 // ============ SMALL_SORT ============
 
@@ -55,6 +56,8 @@ void	sa(t_stack **stack_a);
 int		stack_size(t_stack *stack);
 int		stack_min(t_stack *stack);
 int		stack_max(t_stack *stack);
+int		stack_min_index(t_stack *stack);
+int		stack_max_index(t_stack *stack);
 
 // ============ STACK_UTILS ============
 
@@ -63,6 +66,10 @@ t_stack	*stack_new(int value);
 t_stack	*stack_last(t_stack *stack);
 void	stack_add_back(t_stack **stack, t_stack *new);
 int		is_sorted(t_stack *stack);
+
+// ============ BITS ============
+
+int		max_bits(int n);
 
 // ============ PARSING ============
 
