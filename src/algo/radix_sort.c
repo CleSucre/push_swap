@@ -60,32 +60,31 @@ void	index_stack(t_stack **stack)
  *
  * @param t_stack** stack_a
  * @param t_stack** stack_b
- */
+*/
 void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	max_bit;
-	int	min_bit;
 	int	size;
 	int	i;
+	int	j;
 
 	index_stack(stack_a);
 	max_bit = max_bits(stack_max_index(*stack_a));
-	min_bit = max_bits(-stack_min_index(*stack_a));
-	if (min_bit > max_bit)
-		max_bit = min_bit;
-	i = 0;
-	while (i <= max_bit || !is_sorted(*stack_a))
+	i = -1;
+	while (++i <= max_bit)
 	{
 		size = stack_size(*stack_a);
-		while (size-- > 0)
+		j = -1;
+		while (++j < size)
 		{
 			if ((*stack_a)->index & (1L << i))
 				ra(stack_a);
-			else if (size > 0)
+			else
 				pb(stack_a, stack_b);
 		}
 		while (*stack_b != NULL)
 			pa(stack_a, stack_b);
-		i++;
+		if (is_sorted(*stack_a))
+			break ;
 	}
 }
