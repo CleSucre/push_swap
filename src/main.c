@@ -12,43 +12,6 @@
 
 #include "push_swap.h"
 
-/**
- * @brief Take the first element at the top of a and put it at the top of b.
- * Do nothing if a is empty.
- *
- * @param t_stack** stack_a
- * @param t_stack** stack_b
- */
-void	pb(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack	*tmp;
-
-	if (!*stack_a)
-		return ;
-	tmp = *stack_a;
-	*stack_a = (*stack_a)->next;
-	tmp->next = *stack_b;
-	*stack_b = tmp;
-	ft_printf("pb\n");
-}
-
-/**
- * @brief Check if the stack is sorted.
- *
- * @param stack* stack
- * @return int 1 if the stack is sorted, 0 otherwise
- */
-int	is_sorted(t_stack *stack)
-{
-	while (stack && stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
@@ -72,7 +35,7 @@ int	main(int argc, char **argv)
 	else if (size <= 30)
 		medium_sort(&stack_a, &stack_b);
 	else if (!is_sorted(stack_a))
-		radix_sort(&stack_a, &stack_b);
+		god_sort(&stack_a, &stack_b);
 	stack_clear(&stack_a);
 	return (0);
 }

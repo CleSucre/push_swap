@@ -10,8 +10,12 @@ endif
 
 NAME		= push_swap
 
-SRCS		= src${DIRSEP}main.c src${DIRSEP}push_swap.c src${DIRSEP}moves.c \
-		src${DIRSEP}parsing.c src${DIRSEP}stack.c src${DIRSEP}bits.c src${DIRSEP}stack_size.c  \
+SRCS		= src${DIRSEP}main.c \
+		src${DIRSEP}algo${DIRSEP}small_sort.c src${DIRSEP}algo${DIRSEP}god_sort.c \
+		src${DIRSEP}parsing.c \
+		src${DIRSEP}stack${DIRSEP}stack_size.c src${DIRSEP}stack${DIRSEP}stack_utils.c \
+		src${DIRSEP}moves${DIRSEP}p_moves.c src${DIRSEP}moves${DIRSEP}r_moves.c \
+		src${DIRSEP}moves${DIRSEP}s_moves.c
 
 OBJ_PATH	= obj${DIRSEP}
 

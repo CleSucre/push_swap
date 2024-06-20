@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julthoma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,7 +15,7 @@
 /**
  * @brief Clear the stack.
  *
- * @param t_stack** stack
+ * @param t_stack **stack
  */
 void	*stack_clear(t_stack **stack)
 {
@@ -34,9 +34,7 @@ void	*stack_clear(t_stack **stack)
  * @brief Create a new stack element.
  *
  * @param int value
- * @param unsigned int index
- * @param int is_n
- * @return t_stack*
+ * @return t_stack *
  */
 t_stack	*stack_new(int value)
 {
@@ -46,7 +44,6 @@ t_stack	*stack_new(int value)
 	if (!new)
 		return (NULL);
 	new->value = value;
-	new->index = 0;
 	new->next = NULL;
 	return (new);
 }
@@ -54,8 +51,8 @@ t_stack	*stack_new(int value)
 /**
  * @brief Get the last element of the stack.
  *
- * @param t_stack* stack
- * @return t_stack*
+ * @param t_stack *stack
+ * @return t_stack *
  */
 t_stack	*stack_last(t_stack *stack)
 {
@@ -72,8 +69,8 @@ t_stack	*stack_last(t_stack *stack)
 /**
  * @brief Add a new element at the beginning of the stack.
  *
- * @param t_stack** stack
- * @param t_stack* new
+ * @param t_stack **stack
+ * @param t_stack *new
  */
 void	stack_add_back(t_stack **stack, t_stack *new)
 {
@@ -88,4 +85,21 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 	}
 	else
 		(*stack) = new;
+}
+
+/**
+ * @brief Check if the stack is sorted.
+ *
+ * @param stack *stack
+ * @return int 1 if the stack is sorted, 0 otherwise
+ */
+int	is_sorted(t_stack *stack)
+{
+	while (stack && stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }
