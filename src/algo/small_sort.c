@@ -45,7 +45,7 @@ void	small_sort(t_stack **stack_a, t_stack **stack_b)
 
 	min = stack_min(*stack_a);
 	max = stack_max(*stack_a);
-	while (stack_size(*stack_a) > 3)
+	while (stack_size(*stack_a) > 2)
 	{
 		if ((*stack_a)->value == min || (*stack_a)->value == max)
 			pb(stack_a, stack_b);
