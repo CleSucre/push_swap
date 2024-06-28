@@ -32,6 +32,25 @@ void	tiny_sort(t_stack **stack_a)
 		sa(stack_a);
 }
 
+void	small_sort_2(t_stack **stack_a, t_stack **stack_b, int max)
+{
+	tiny_sort(stack_a);
+	while (*stack_b && (*stack_b)->next != NULL)
+	{
+		if ((*stack_b)->value == max)
+		{
+			pa(stack_a, stack_b);
+			ra(stack_a);
+			pa(stack_a, stack_b);
+		}
+		else
+			rb(stack_b);
+	}
+	pa(stack_a, stack_b);
+	if ((*stack_a)->value == max)
+		ra(stack_a);
+}
+
 /**
  * @brief Sort the stack equal to or smaller than 5.
  *
@@ -52,21 +71,7 @@ void	small_sort(t_stack **stack_a, t_stack **stack_b)
 		else
 			ra(stack_a);
 	}
-	tiny_sort(stack_a);
-	while (*stack_b && (*stack_b)->next != NULL)
-	{
-		if ((*stack_b)->value == max)
-		{
-			pa(stack_a, stack_b);
-			ra(stack_a);
-			pa(stack_a, stack_b);
-		}
-		else
-			rb(stack_b);
-	}
-	pa(stack_a, stack_b);
-	if ((*stack_a)->value == max)
-		ra(stack_a);
+	small_sort_2(stack_a, stack_b, max);
 }
 
 /**
